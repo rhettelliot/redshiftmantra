@@ -1,18 +1,38 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion } from '@/lib/motion'
 
+// Per-platform search links — these resolve to the artist on every service.
+// Swap in canonical /artist/<id> URLs once each platform's artist page is known
+// (the Spotify artist page is already linked via the album entries below).
 const platforms = [
-  { name: 'Spotify', url: 'https://open.spotify.com/artist/redshiftmantra', icon: '◈' },
-  { name: 'Apple Music', url: 'https://music.apple.com/artist/redshiftmantra', icon: '⬡' },
-  { name: 'Amazon', url: 'https://music.amazon.com/artist/redshiftmantra', icon: '◆' },
-  { name: 'Tidal', url: 'https://tidal.com/artist/redshiftmantra', icon: '◉' },
-  { name: 'YouTube Music', url: 'https://music.youtube.com/artist/redshiftmantra', icon: '▷' },
+  { name: 'Spotify', url: 'https://open.spotify.com/search/Red%20Shift%20Mantra', icon: '◈' },
+  { name: 'Apple Music', url: 'https://music.apple.com/us/search?term=Red+Shift+Mantra', icon: '⬡' },
+  { name: 'Amazon Music', url: 'https://music.amazon.com/search/Red+Shift+Mantra', icon: '◆' },
+  { name: 'Tidal', url: 'https://tidal.com/search?q=Red%20Shift%20Mantra', icon: '◉' },
+  { name: 'YouTube Music', url: 'https://music.youtube.com/search?q=Red+Shift+Mantra', icon: '▷' },
 ]
 
 const releases = [
-  { title: 'Phoneme', hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/phoneme-2' },
-  { title: 'Deep Field Image', hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/deep-field-image-2' },
+  {
+    title: 'Phoneme',
+    subtitle: 'The Geometry of Sound',
+    year: '2025',
+    trackCount: 9,
+    color: '#007AFF',
+    hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/phoneme-2',
+    spotify: 'https://open.spotify.com/album/3jAWlv6FPYUhiDJ0X0KEhH',
+  },
+  {
+    title: 'Deep Field Image',
+    subtitle: 'The Transmutation of Matter',
+    year: '2025',
+    trackCount: 7,
+    color: '#FF4D00',
+    hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/deep-field-image-2',
+    spotify: 'https://open.spotify.com/album/1nJCr1MCkLBA1ZqD7j7GDF',
+  },
 ]
 
 export function Listen() {
@@ -20,6 +40,8 @@ export function Listen() {
 
   useEffect(() => {
     const animate = async () => {
+      if (prefersReducedMotion()) return
+
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
@@ -31,6 +53,24 @@ export function Listen() {
           scrollTrigger: { trigger: heading, start: 'top 85%', once: true },
         })
       }
+
+      const items = sectionRef.current?.querySelectorAll('.listen-item')
+      items?.forEach((item, i) => {
+        gsap.from(item, {
+          y: 30, opacity: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: item, start: 'top 90%', once: true },
+          delay: i * 0.1,
+        })
+      })
+
+      const badges = sectionRef.current?.querySelectorAll('.platform-badge')
+      badges?.forEach((badge, i) => {
+        gsap.from(badge, {
+          y: 15, opacity: 0, duration: 0.4, ease: 'power2.out',
+          scrollTrigger: { trigger: badge, start: 'top 95%', once: true },
+          delay: i * 0.05,
+        })
+      })
     }
     animate()
   }, [])
@@ -43,15 +83,15 @@ export function Listen() {
         <div className="section-label mb-8">
           Listen /
         </div>
-        
-        <h2 className="listen-heading text-[clamp(2.5rem,6vw,5rem)] font-display font-900 leading-[0.95] mb-4">
+
+        <h2 className="listen-heading text-[clamp(2.5rem,6vw,5rem)] font-display font-[900] leading-[0.95] mb-4">
           <span className="hollow-text">Stream</span>
         </h2>
         <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted mb-16">
           All platforms · Lossless where available
         </p>
 
-        {/* Albums */}
+        {/* Albums with enriched data */}
         <div className="space-y-4 mb-16">
           {releases.map((release, i) => (
             <a
@@ -66,15 +106,20 @@ export function Listen() {
                 <span className="font-mono text-[10px] text-light-muted" style={{ fontFeatureSettings: '"tnum"' }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className="text-[18px] font-display font-900 group-hover:text-accent transition-colors">
-                  {release.title}
-                </span>
+                <div>
+                  <span className="block text-[18px] font-display font-[900] group-hover:text-accent transition-colors">
+                    {release.title}
+                  </span>
+                  <span className="block font-mono text-[9px] tracking-[0.1em] uppercase mt-1" style={{ color: release.color }}>
+                    {release.year} · {release.trackCount} tracks · {release.subtitle}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted group-hover:text-accent transition-colors">
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted group-hover:text-accent transition-colors hidden sm:inline">
                   All platforms
                 </span>
-                <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
               </div>
             </a>
           ))}
@@ -88,7 +133,7 @@ export function Listen() {
               href={p.url}
               target="_blank"
               rel="noreferrer noopener"
-              className="group flex items-center gap-2 px-4 py-2 border border-[var(--border)] hover:border-accent/50 transition-all duration-300 cursor-none"
+              className="platform-badge group flex items-center gap-2 px-4 py-2 border border-[var(--border)] hover:border-accent/50 hover:bg-surface-hover/30 transition-all duration-300 cursor-none"
               style={{ borderRadius: 0 }}
               data-cursor
             >

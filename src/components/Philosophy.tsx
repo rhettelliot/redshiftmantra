@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion } from '@/lib/motion'
 
 const principles = [
   {
@@ -25,6 +26,9 @@ export function Philosophy() {
 
   useEffect(() => {
     const animate = async () => {
+      // Reduced motion: words stay fully legible, no blur/scrub reveal.
+      if (prefersReducedMotion()) return
+
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
@@ -67,7 +71,7 @@ export function Philosophy() {
               <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-4">
                 {p.label}
               </div>
-              <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-900 leading-[1.05] mb-6 text-light">
+              <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-[900] leading-[1.05] mb-6 text-light">
                 {p.title}
               </h2>
               <div className="text-[15px] leading-[1.8] text-light-dim max-w-2xl">

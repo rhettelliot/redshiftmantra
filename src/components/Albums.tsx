@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion } from '@/lib/motion'
 
 interface Album {
   id: string
@@ -53,6 +54,8 @@ export function Albums() {
 
   useEffect(() => {
     const animate = async () => {
+      if (prefersReducedMotion()) return
+
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
@@ -94,7 +97,7 @@ export function Albums() {
                   <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-3" style={{ color: album.color }}>
                     {album.year} · {album.trackCount} tracks · {album.runtime}
                   </div>
-                  <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-display font-900 leading-[0.95]">
+                  <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-display font-[900] leading-[0.95]">
                     {album.title}
                   </h2>
                   <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mt-2">
@@ -119,8 +122,7 @@ export function Albums() {
                 {album.tracks.map((track, i) => (
                   <div
                     key={track}
-                    className="group flex items-center py-3 border-b border-[var(--border)] hover:bg-surface-hover/30 transition-colors duration-300 cursor-none"
-                    data-cursor
+                    className="group flex items-center py-3 border-b border-[var(--border)] hover:bg-surface-hover/30 transition-colors duration-300"
                   >
                     <span className="font-mono text-[10px] text-light-muted w-8 shrink-0" style={{ fontFeatureSettings: '"tnum"' }}>
                       {String(i + 1).padStart(2, '0')}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
+import { setLenis } from '@/lib/smoothScroll'
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
@@ -12,6 +13,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       smoothWheel: true,
     })
     lenisRef.current = lenis
+    setLenis(lenis)
 
     // Connect to GSAP ticker once GSAP loads
     const connectGSAP = async () => {
@@ -29,6 +31,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       lenis.destroy()
+      setLenis(null)
     }
   }, [])
 

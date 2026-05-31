@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { prefersReducedMotion } from '@/lib/motion'
 
 const films = [
   {
@@ -34,6 +35,8 @@ export function VisualOS() {
 
   useEffect(() => {
     const animate = async () => {
+      if (prefersReducedMotion()) return
+
       const gsap = (await import('gsap')).default
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
@@ -56,7 +59,7 @@ export function VisualOS() {
         <div className="section-label mb-8">
           Visual OS /
         </div>
-        <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-900 leading-[1.05] mb-4">
+        <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-[900] leading-[1.05] mb-4">
           The Feature Film
         </h2>
         <p className="text-[15px] text-light-dim max-w-xl mb-20">
