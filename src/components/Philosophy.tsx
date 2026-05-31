@@ -25,37 +25,49 @@ export function Philosophy() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const animate = async () => {
-      // Reduced motion: words stay fully legible, no blur/scrub reveal.
-      if (prefersReducedMotion()) return
+    let io: IntersectionObserver | null = null
+
+    const setup = async () => {
+      const root = sectionRef.current
+      if (!root) return
+      const items = Array.from(root.querySelectorAll('.philosophy-item'))
+      if (!items.length) return
 
       const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
 
-      const items = sectionRef.current?.querySelectorAll('.philosophy-item')
-      if (!items) return
+      // Reduced motion: words stay fully legible, no blur reveal.
+      if (prefersReducedMotion()) {
+        items.forEach((item) =>
+          gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 1, scale: 1, filter: 'none' })
+        )
+        return
+      }
 
-      items.forEach((item) => {
-        const words = item.querySelectorAll('.word-reveal')
-        gsap.set(words, { opacity: 0.05, scale: 0.97, filter: 'blur(8px)' })
-        
-        gsap.to(words, {
-          opacity: 1,
-          scale: 1,
-          filter: 'blur(0px)',
-          stagger: 0.02,
-          ease: 'power1.inOut',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 75%',
-            end: 'bottom 55%',
-            scrub: 1.5,
-          },
-        })
-      })
+      // Hide words, then stagger them in when the paragraph enters view.
+      // IntersectionObserver (not ScrollTrigger) so the reveal can't be
+      // stranded by stale scroll positions under Lenis.
+      items.forEach((item) =>
+        gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 0.08, scale: 0.98, filter: 'blur(6px)' })
+      )
+
+      io = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
+            gsap.to(entry.target.querySelectorAll('.word-reveal'), {
+              opacity: 1, scale: 1, filter: 'blur(0px)',
+              stagger: 0.015, duration: 0.5, ease: 'power2.out',
+            })
+            obs.unobserve(entry.target)
+          })
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.1 }
+      )
+      items.forEach((item) => io!.observe(item))
     }
-    animate()
+    setup()
+
+    return () => io?.disconnect()
   }, [])
 
   return (

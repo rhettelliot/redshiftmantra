@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { prefersReducedMotion } from '@/lib/motion'
+import { revealOnEnter } from '@/lib/reveal'
 
 // Per-platform search links — these resolve to the artist on every service.
 // Swap in canonical /artist/<id> URLs once each platform's artist page is known
@@ -39,40 +39,12 @@ export function Listen() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const animate = async () => {
-      if (prefersReducedMotion()) return
-
-      const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-
-      const heading = sectionRef.current?.querySelector('.listen-heading')
-      if (heading) {
-        gsap.from(heading, {
-          y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: heading, start: 'top 85%', once: true },
-        })
-      }
-
-      const items = sectionRef.current?.querySelectorAll('.listen-item')
-      items?.forEach((item, i) => {
-        gsap.from(item, {
-          y: 30, opacity: 0, duration: 0.6, ease: 'power3.out',
-          scrollTrigger: { trigger: item, start: 'top 90%', once: true },
-          delay: i * 0.1,
-        })
-      })
-
-      const badges = sectionRef.current?.querySelectorAll('.platform-badge')
-      badges?.forEach((badge, i) => {
-        gsap.from(badge, {
-          y: 15, opacity: 0, duration: 0.4, ease: 'power2.out',
-          scrollTrigger: { trigger: badge, start: 'top 95%', once: true },
-          delay: i * 0.05,
-        })
-      })
-    }
-    animate()
+    let dispose = () => {}
+    const els = sectionRef.current?.querySelectorAll(
+      '.listen-heading, .listen-item, .platform-badge'
+    ) ?? []
+    revealOnEnter(els, { y: 30 }).then((d) => { dispose = d })
+    return () => dispose()
   }, [])
 
   return (

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { prefersReducedMotion } from '@/lib/motion'
+import { revealOnEnter } from '@/lib/reveal'
 
 // Track data with waveform-inspired visual parameters
 const trackData = [
@@ -97,33 +97,16 @@ export function TrackVisualizer() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const animate = async () => {
-      if (prefersReducedMotion()) return
+    const disposers: Array<() => void> = []
+    const root = sectionRef.current
+    if (!root) return
 
-      const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
+    const title = root.querySelectorAll('.viz-title')
+    const rows = root.querySelectorAll('.track-row')
+    revealOnEnter(title, { y: 40 }).then((d) => disposers.push(d))
+    revealOnEnter(rows, { x: -30, duration: 0.5 }).then((d) => disposers.push(d))
 
-      // Animate section title
-      const heading = sectionRef.current?.querySelector('.viz-title')
-      if (heading) {
-        gsap.from(heading, {
-          y: 40, opacity: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: heading, start: 'top 85%', once: true }
-        })
-      }
-
-      // Animate track rows
-      const rows = sectionRef.current?.querySelectorAll('.track-row')
-      rows?.forEach((row, i) => {
-        gsap.from(row, {
-          x: -30, opacity: 0, duration: 0.5, ease: 'power2.out',
-          scrollTrigger: { trigger: row, start: 'top 90%', once: true },
-          delay: i * 0.05,
-        })
-      })
-    }
-    animate()
+    return () => disposers.forEach((d) => d())
   }, [])
 
   // Draw canvas waveforms with resize handling

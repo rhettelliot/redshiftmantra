@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { prefersReducedMotion } from '@/lib/motion'
+import { revealOnEnter } from '@/lib/reveal'
 
 const films = [
   {
@@ -34,23 +34,10 @@ export function VisualOS() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const animate = async () => {
-      if (prefersReducedMotion()) return
-
-      const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-
-      const cards = sectionRef.current?.querySelectorAll('.film-card')
-      cards?.forEach((card, i) => {
-        gsap.from(card, {
-          y: 60, opacity: 0, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: card, start: 'top 85%', once: true },
-          delay: i * 0.1,
-        })
-      })
-    }
-    animate()
+    let dispose = () => {}
+    const cards = sectionRef.current?.querySelectorAll('.film-card') ?? []
+    revealOnEnter(cards, { y: 50 }).then((d) => { dispose = d })
+    return () => dispose()
   }, [])
 
   return (

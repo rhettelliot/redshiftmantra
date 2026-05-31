@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { prefersReducedMotion } from '@/lib/motion'
+import { revealOnEnter } from '@/lib/reveal'
 
 interface Album {
   id: string
@@ -53,32 +53,10 @@ export function Albums() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const animate = async () => {
-      if (prefersReducedMotion()) return
-
-      const gsap = (await import('gsap')).default
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-
-      const items = sectionRef.current?.querySelectorAll('.album-card')
-      if (!items) return
-
-      items.forEach((item, i) => {
-        gsap.from(item, {
-          y: 80,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            once: true,
-          },
-          delay: i * 0.15,
-        })
-      })
-    }
-    animate()
+    let dispose = () => {}
+    const items = sectionRef.current?.querySelectorAll('.album-card') ?? []
+    revealOnEnter(items, { y: 60 }).then((d) => { dispose = d })
+    return () => dispose()
   }, [])
 
   return (
