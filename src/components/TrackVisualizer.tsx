@@ -142,7 +142,7 @@ export function TrackVisualizer() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-48 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-8">
           Signal /
@@ -181,7 +181,7 @@ export function TrackVisualizer() {
         </div>
       </div>
 
-      <div className="divider-glow max-w-5xl mx-auto mt-32" />
+      <div className="divider-glow max-w-5xl mx-auto mt-16" />
     </section>
   )
 }

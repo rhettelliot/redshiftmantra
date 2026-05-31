@@ -54,7 +54,7 @@ export function VisualOS() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-48">
+    <section ref={sectionRef} className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-8">
           Visual OS /
@@ -62,7 +62,7 @@ export function VisualOS() {
         <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-[900] leading-[1.05] mb-4">
           The Feature Film
         </h2>
-        <p className="text-[15px] text-light-dim max-w-xl mb-20">
+        <p className="text-[15px] text-light-dim max-w-xl mb-12">
           Red Shift Mantra is a 92-minute non-verbal cinematic experience. 
           Two chapters forming a continuous arc from the birth of matter to the resonance of consciousness.
         </p>
@@ -112,7 +112,7 @@ export function VisualOS() {
         </div>
       </div>
 
-      <div className="divider-glow max-w-5xl mx-auto mt-32" />
+      <div className="divider-glow max-w-5xl mx-auto mt-16" />
     </section>
   )
 }

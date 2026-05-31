@@ -59,22 +59,26 @@ export function Philosophy() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="philosophy" className="py-32 md:py-48">
-      <div className="max-w-5xl mx-auto px-6 md:px-12">
-        <div className="section-label mb-20">
+    <section ref={sectionRef} id="philosophy" className="py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <div className="section-label mb-12">
           Philosophy /
         </div>
 
-        <div className="space-y-32 md:space-y-48">
+        <div className="space-y-16 md:space-y-24">
           {principles.map((p) => (
-            <div key={p.label} className="philosophy-item">
-              <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-4">
-                {p.label}
+            <div key={p.label} className="philosophy-item grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
+              {/* Left: marker + title */}
+              <div className="md:col-span-5">
+                <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-4">
+                  {p.label}
+                </div>
+                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-display font-[900] leading-[1.05] text-light">
+                  {p.title}
+                </h2>
               </div>
-              <h2 className="text-[clamp(2rem,5vw,4rem)] font-display font-[900] leading-[1.05] mb-6 text-light">
-                {p.title}
-              </h2>
-              <div className="text-[15px] leading-[1.8] text-light-dim max-w-2xl">
+              {/* Right: body */}
+              <div className="md:col-span-7 text-[15px] leading-[1.8] text-light-dim md:pt-3">
                 {p.text.split(' ').map((word, i) => (
                   <span key={i} className="word-reveal inline-block mr-[0.3em]">{word}</span>
                 ))}
@@ -84,7 +88,7 @@ export function Philosophy() {
         </div>
       </div>
 
-      <div className="divider-glow max-w-5xl mx-auto mt-32" />
+      <div className="divider-glow max-w-6xl mx-auto mt-16" />
     </section>
   )
 }

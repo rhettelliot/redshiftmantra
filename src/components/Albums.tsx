@@ -82,89 +82,86 @@ export function Albums() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="albums" className="py-32 md:py-48">
+    <section ref={sectionRef} id="albums" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="section-label mb-20">
+        <div className="section-label mb-12">
           Albums /
         </div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-16 md:space-y-24">
           {albums.map((album) => (
-            <div key={album.id} className="album-card">
-              {/* Album header */}
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
-                <div>
-                  <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-3" style={{ color: album.color }}>
-                    {album.year} · {album.trackCount} tracks · {album.runtime}
-                  </div>
-                  <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-display font-[900] leading-[0.95]">
-                    {album.title}
-                  </h2>
-                  <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mt-2">
-                    {album.subtitle}
-                  </p>
+            <div key={album.id} className="album-card grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+              {/* Left: identity */}
+              <div className="md:col-span-5">
+                <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-3" style={{ color: album.color }}>
+                  {album.year} · {album.trackCount} tracks · {album.runtime}
+                </div>
+                <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)] font-display font-[900] leading-[0.95]">
+                  {album.title}
+                </h2>
+                <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mt-2">
+                  {album.subtitle}
+                </p>
+
+                <p className="text-[15px] leading-[1.8] text-light-dim mt-6">
+                  {album.narrative}
+                </p>
+
+                <div className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted mt-8">
+                  <span className="text-[8px] opacity-40">arc →</span>{' '}
+                  {album.theme}
+                </div>
+
+                <div className="flex items-center gap-4 mt-8">
+                  <a
+                    href={album.hyperfollow}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border text-light hover:bg-accent hover:text-void hover:border-accent transition-all duration-300 cursor-none"
+                    style={{ borderRadius: 0, borderColor: album.color, color: album.color }}
+                    data-cursor
+                  >
+                    Listen
+                  </a>
+                  <a
+                    href={album.spotify}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors cursor-none"
+                    data-cursor
+                  >
+                    Spotify →
+                  </a>
                 </div>
               </div>
 
-              {/* Narrative */}
-              <p className="text-[15px] leading-[1.8] text-light-dim max-w-2xl mb-10">
-                {album.narrative}
-              </p>
-
-              {/* Theme arc */}
-              <div className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted mb-8">
-                <span className="text-[8px] opacity-40">arc →</span>{' '}
-                {album.theme}
-              </div>
-
-              {/* Track list */}
-              <div className="border-t border-[var(--border)]">
-                {album.tracks.map((track, i) => (
-                  <div
-                    key={track}
-                    className="group flex items-center py-3 border-b border-[var(--border)] hover:bg-surface-hover/30 transition-colors duration-300"
-                  >
-                    <span className="font-mono text-[10px] text-light-muted w-8 shrink-0" style={{ fontFeatureSettings: '"tnum"' }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="flex-1 text-[14px] text-light-dim group-hover:text-light transition-colors">
-                      {track}
-                    </span>
-                    <span className="font-mono text-[9px] text-light-muted opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-[0.1em]">
-                      {album.id === 'phoneme' ? 'phon' : 'dfl'}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-4 mt-8">
-                <a
-                  href={album.hyperfollow}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border text-light hover:bg-accent hover:text-void hover:border-accent transition-all duration-300 cursor-none"
-                  style={{ borderRadius: 0, borderColor: album.color, color: album.color }}
-                  data-cursor
-                >
-                  Listen
-                </a>
-                <a
-                  href={album.spotify}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors cursor-none"
-                  data-cursor
-                >
-                  Spotify →
-                </a>
+              {/* Right: track list */}
+              <div className="md:col-span-7">
+                <div className="border-t border-[var(--border)]">
+                  {album.tracks.map((track, i) => (
+                    <div
+                      key={track}
+                      className="group flex items-center py-3 border-b border-[var(--border)] hover:bg-surface-hover/30 transition-colors duration-300"
+                    >
+                      <span className="font-mono text-[10px] text-light-muted w-8 shrink-0" style={{ fontFeatureSettings: '"tnum"' }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="flex-1 text-[14px] text-light-dim group-hover:text-light transition-colors">
+                        {track}
+                      </span>
+                      <span className="font-mono text-[9px] text-light-muted opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-[0.1em]">
+                        {album.id === 'phoneme' ? 'phon' : 'dfl'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="divider-glow max-w-5xl mx-auto mt-32" />
+      <div className="divider-glow max-w-5xl mx-auto mt-16" />
     </section>
   )
 }

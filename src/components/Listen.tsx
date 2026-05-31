@@ -76,7 +76,7 @@ export function Listen() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="listen" className="py-32 md:py-48 relative overflow-hidden"
+    <section ref={sectionRef} id="listen" className="py-20 md:py-28 relative overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(255,77,0,0.03) 0%, rgba(0,0,0,0) 60%)' }}
     >
       <div className="max-w-5xl mx-auto px-6 md:px-12">
