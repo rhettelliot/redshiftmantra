@@ -118,7 +118,7 @@ export function Gatekeeper() {
         className="absolute inset-0 transition-opacity duration-1000"
         style={{
           background: mounted
-            ? 'radial-gradient(ellipse at 50% 50%, rgba(255,77,0,0.08) 0%, rgba(0,0,0,0) 60%)'
+            ? 'radial-gradient(ellipse at 50% 50%, rgba(255,107,53,0.08) 0%, rgba(2,2,3,0) 60%)'
             : 'none',
         }}
       />
@@ -136,7 +136,7 @@ export function Gatekeeper() {
                 left: `${(i * 37 + 11) % 100}%`,
                 top: `${(i * 53 + 7) % 100}%`,
                 backgroundColor:
-                  i % 2 === 0 ? 'rgba(255,77,0,0.4)' : 'rgba(255,255,255,0.15)',
+                  i % 2 === 0 ? 'rgba(255,107,53,0.4)' : 'rgba(255,255,255,0.15)',
                 animation: `floatUp ${15 + ((i * 13) % 20)}s linear infinite`,
                 animationDelay: `${(i * 17) % 10}s`,
               }}

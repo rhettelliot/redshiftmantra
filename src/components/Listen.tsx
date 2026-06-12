@@ -29,7 +29,7 @@ const releases = [
     subtitle: 'The Transmutation of Matter',
     year: '2025',
     trackCount: 7,
-    color: '#FF4D00',
+    color: '#FF6B35',
     hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/deep-field-image-2',
     spotify: 'https://open.spotify.com/album/1nJCr1MCkLBA1ZqD7j7GDF',
   },
@@ -49,7 +49,7 @@ export function Listen() {
 
   return (
     <section ref={sectionRef} id="listen" className="py-20 md:py-28 relative overflow-hidden"
-      style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(255,77,0,0.03) 0%, rgba(0,0,0,0) 60%)' }}
+      style={{ background: 'radial-gradient(ellipse at 50% 80%, rgba(255,107,53,0.03) 0%, rgba(2,2,3,0) 60%)' }}
     >
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <div className="section-label mb-8">

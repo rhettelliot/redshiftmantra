@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
 import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 
@@ -23,6 +23,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Red Shift Mantra',
+  metadataBase: new URL('https://redshiftmantra.com'),
   description: 'The geometry of sound. The transmutation of matter. Electronic / Synthwave by Manteis Recordings.',
   icons: {
     icon: '/favicon.svg',
@@ -31,10 +32,19 @@ export const metadata: Metadata = {
     title: 'Red Shift Mantra',
     description: 'Electronic / Synthwave — Manteis Recordings',
     type: 'website',
+    images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Red Shift Mantra — Manteis Recordings' }],
   },
-  other: {
-    'theme-color': '#000000',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Red Shift Mantra',
+    description: 'Electronic / Synthwave — Manteis Recordings',
+    images: ['/og.jpg'],
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#000000',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({

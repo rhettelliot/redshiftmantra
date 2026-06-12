@@ -9,7 +9,7 @@
 
 :root {
   /* Void */
-  --void: #000000;
+  --void: #020203;
   --void-soft: #0A0A0F;
   --void-warm: #0D0B08;
   
@@ -20,11 +20,11 @@
   --light-faint: #333333;
   
   /* Accents */
-  --accent: #FF4D00;
+  --accent: #FF6B35;
   --accent-blue: #007AFF;
   --accent-warm: #FF6B35;
-  --accent-dim: rgba(255, 77, 0, 0.12);
-  --accent-glow: rgba(255, 77, 0, 0.3);
+  --accent-dim: rgba(255, 107, 53, 0.12);
+  --accent-glow: rgba(255, 107, 53, 0.3);
   --accent-blue-dim: rgba(0, 122, 255, 0.12);
   
   /* Surfaces */

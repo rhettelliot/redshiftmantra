@@ -4,14 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        void: '#000000',
+        void: '#020203',
         'void-soft': '#0A0A0F',
         'void-warm': '#0D0B08',
         light: '#FAFAFA',
         'light-dim': '#E5E5E5',
         'light-muted': '#666666',
         'light-faint': '#333333',
-        accent: '#FF4D00',
+        accent: '#FF6B35',
         'accent-blue': '#007AFF',
         'accent-warm': '#FF6B35',
         surface: '#0A0A0A',
