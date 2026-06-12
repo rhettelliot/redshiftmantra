@@ -232,3 +232,7 @@ a:focus-visible {
     font-size: 9px;
   }
 }
+/* Anchored sections land below the fixed nav */
+section[id] {
+  scroll-margin-top: 88px;
+}
