@@ -19,7 +19,7 @@
   --light: #FFFFFF;
   --light-dim: #E5E5E5;
   --light-muted: #888888;
-  --light-faint: #555555;
+  --light-faint: #767676;
 
   /* Signal — the single accent. Cosmic, cold, precise. */
   --signal: #007AFF;
@@ -97,18 +97,12 @@ body {
   color: var(--light);
 }
 
-/* ─── Custom Cursor: hide the native cursor everywhere on precise-pointer
-   devices (the square CustomCursor replaces it). Touch / coarse pointers
-   keep their native cursor since CustomCursor is disabled there. ─── */
-@media (hover: hover) and (pointer: fine) {
-  html,
-  body,
-  a,
-  button,
-  [data-cursor] {
-    cursor: none;
-  }
-}
+/* ─── Custom Cursor: the square CustomCursor is a visual enhancement layer
+   on top of the native cursor. We do NOT hide the native cursor — WCAG 2.1
+   SC 1.4.13 requires that content is not obscured by the author's cursor,
+   and SC 2.4.7 requires visible focus indicators. Hiding cursor:none
+   globally broke both. The native cursor stays visible; CustomCursor
+   renders as an additional pointer-events-none overlay. ─── */
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
@@ -250,14 +244,6 @@ a:focus-visible,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  html,
-  body,
-  a,
-  button,
-  [data-cursor] {
-    cursor: auto !important;
   }
 
   .scroll-indicator-line {

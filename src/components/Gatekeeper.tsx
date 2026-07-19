@@ -123,10 +123,9 @@ export function Gatekeeper() {
     <div
       ref={gateRef}
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-void"
-      style={{ cursor: 'none' }}
       role="dialog"
       aria-label="Welcome gate"
-      aria-modal="false"
+      aria-modal="true"
       aria-describedby="gate-desc"
     >
       <span id="gate-desc" className="sr-only">
@@ -196,7 +195,7 @@ export function Gatekeeper() {
               handleEnter()
             }
           }}
-          className="gate-button group relative font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted hover:text-accent transition-colors duration-500 cursor-none px-12 py-3"
+          className="gate-button group relative font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted hover:text-accent transition-colors duration-500 px-12 py-3"
           style={{ opacity: 0 }}
           data-cursor
           aria-label="Enter the Red Shift Mantra experience"

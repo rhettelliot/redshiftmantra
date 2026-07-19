@@ -11,7 +11,7 @@ module.exports = {
         light: '#FFFFFF',
         'light-dim': '#E5E5E5',
         'light-muted': '#888888',
-        'light-faint': '#555555',
+        'light-faint': '#767676',
         accent: '#007AFF',
         signal: '#007AFF',
         surface: '#0C0C0C',
