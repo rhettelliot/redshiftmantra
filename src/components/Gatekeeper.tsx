@@ -28,7 +28,7 @@ export function Gatekeeper() {
           .forEach((el) => { el.style.opacity = '1' })
         gate
           .querySelectorAll<HTMLElement>('.gate-coord')
-          .forEach((el) => { el.style.opacity = '0.3' })
+          .forEach((el) => { el.style.opacity = '0.5' })
         return
       }
 
@@ -55,12 +55,22 @@ export function Gatekeeper() {
       )
       .fromTo(gate.querySelectorAll('.gate-coord'),
         { opacity: 0 },
-        { opacity: 0.3, duration: 0.8, stagger: 0.2 },
+        { opacity: 0.5, duration: 0.8, stagger: 0.2 },
         '-=0.4'
       )
     }
     animate()
   }, [])
+
+  // Dismiss gate with Escape
+  useEffect(() => {
+    if (entered) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleEnter()
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [entered])
 
   const handleEnter = async () => {
     const gate = gateRef.current
@@ -79,6 +89,8 @@ export function Gatekeeper() {
     const tl = gsap.timeline({
       onComplete: () => {
         setEntered(true)
+        // Move focus to main content so keyboard users land in the page.
+        document.getElementById('main')?.focus()
       },
     })
 
@@ -105,6 +117,8 @@ export function Gatekeeper() {
 
   if (entered) return null
 
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   return (
     <div
       ref={gateRef}
@@ -112,7 +126,13 @@ export function Gatekeeper() {
       style={{ cursor: 'none' }}
       role="dialog"
       aria-label="Welcome gate"
+      aria-modal="false"
+      aria-describedby="gate-desc"
     >
+      <span id="gate-desc" className="sr-only">
+        Press Enter, Space, or Escape to enter the Red Shift Mantra experience.
+      </span>
+
       {/* Cosmic red-shift background glow */}
       <div
         className="absolute inset-0 transition-opacity duration-1000"
@@ -121,11 +141,12 @@ export function Gatekeeper() {
             ? 'radial-gradient(ellipse at 50% 50%, rgba(255,107,53,0.08) 0%, rgba(2,2,3,0) 60%)'
             : 'none',
         }}
+        aria-hidden="true"
       />
 
       {/* Floating particles — deterministic positions to avoid hydration mismatch */}
-      {mounted && (
-        <div className="absolute inset-0 overflow-hidden">
+      {mounted && !reducedMotion && (
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
@@ -151,14 +172,14 @@ export function Gatekeeper() {
           Manteis Recordings
         </div>
 
-        <h1
+        <h2
           className="gate-title text-[clamp(2.5rem,8vw,7rem)] font-display font-[900] leading-[0.95] tracking-[-0.02em] text-light mb-4"
           style={{ opacity: 0 }}
         >
           <span className="hollow-text">Red Shift</span>
           <br />
           <span className="text-accent">Mantra</span>
-        </h1>
+        </h2>
 
         <p
           className="gate-subtitle font-mono text-[11px] tracking-[0.3em] uppercase text-light-muted mb-16"

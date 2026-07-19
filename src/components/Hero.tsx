@@ -91,10 +91,10 @@ export function Hero() {
 
       {/* Scroll indicator — pinned to the viewport bottom, not the text box */}
       <div className="hero-scroll absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2" style={{ opacity: 0 }}>
-        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted opacity-50">
+        <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted">
           Scroll
         </span>
-        <div className="scroll-indicator-line w-[1px] h-12 bg-gradient-to-b from-accent/50 to-transparent" />
+        <div className="scroll-indicator-line w-[1px] h-12 bg-gradient-to-b from-accent/70 to-transparent" />
       </div>
     </section>
   )

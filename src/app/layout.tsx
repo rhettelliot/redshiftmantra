@@ -55,6 +55,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${playfair.variable}`}>
       <body className="bg-void text-light antialiased">
+        <a
+          href="#main"
+          className="skip-link"
+        >
+          Skip to main content
+        </a>
         {/* Without JS the gate can't be dismissed and intro-animated content
             never reveals — degrade gracefully so the page stays usable. */}
         <noscript>
@@ -66,7 +72,7 @@ export default function RootLayout({
             }
           `}</style>
         </noscript>
-        <div className="noise-overlay" />
+        <div className="noise-overlay" aria-hidden="true" />
         {children}
       </body>
     </html>

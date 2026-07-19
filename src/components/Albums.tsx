@@ -86,8 +86,7 @@ export function Albums() {
                 </p>
 
                 <div className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted mt-8">
-                  <span className="text-[8px] opacity-40">arc →</span>{' '}
-                  {album.theme}
+                  arc → {album.theme}
                 </div>
 
                 <div className="flex items-center gap-4 mt-8">
@@ -95,7 +94,7 @@ export function Albums() {
                     href={album.hyperfollow}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border text-light hover:bg-accent hover:text-void hover:border-accent transition-all duration-300 cursor-none"
+                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border hover:bg-accent hover:text-void hover:border-accent transition-all duration-300 cursor-none"
                     style={{ borderRadius: 0, borderColor: album.color, color: album.color }}
                     data-cursor
                   >
@@ -127,7 +126,7 @@ export function Albums() {
                       <span className="flex-1 text-[14px] text-light-dim group-hover:text-light transition-colors">
                         {track}
                       </span>
-                      <span className="font-mono text-[9px] text-light-muted opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-[0.1em]">
+                      <span className="font-mono text-[9px] text-light-muted uppercase tracking-[0.1em]">
                         {album.id === 'phoneme' ? 'phon' : 'dfl'}
                       </span>
                     </div>

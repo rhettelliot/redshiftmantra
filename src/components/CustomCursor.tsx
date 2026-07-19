@@ -8,7 +8,8 @@ export function CustomCursor() {
   const [isTouch, setIsTouch] = useState(false)
 
   useEffect(() => {
-    if (window.matchMedia('(hover: none)').matches) {
+    if (typeof window === 'undefined') return
+    if (window.matchMedia('(hover: none)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setIsTouch(true)
       return
     }
@@ -106,6 +107,7 @@ export function CustomCursor() {
           opacity: 0,
           transition: 'width 0.2s, height 0.2s, margin 0.2s, opacity 0.3s',
         }}
+        aria-hidden="true"
       />
       <div
         ref={ringRef}
@@ -120,6 +122,7 @@ export function CustomCursor() {
           opacity: 0,
           transition: 'width 0.3s cubic-bezier(0.34,1.56,0.64,1), height 0.3s cubic-bezier(0.34,1.56,0.64,1), margin 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, opacity 0.3s',
         }}
+        aria-hidden="true"
       />
     </>
   )

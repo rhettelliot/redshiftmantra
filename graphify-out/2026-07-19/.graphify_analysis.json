@@ -1,0 +1,282 @@
+{
+  "communities": {
+    "0": [
+      "src_app_page",
+      "src_app_page_home",
+      "src_components_albums",
+      "src_components_albums_album",
+      "src_components_albums_albums",
+      "src_components_ambientorb",
+      "src_components_ambientorb_ambientorb",
+      "src_components_customcursor",
+      "src_components_customcursor_customcursor",
+      "src_components_footer",
+      "src_components_footer_footer",
+      "src_components_gatekeeper",
+      "src_components_gatekeeper_gatekeeper",
+      "src_components_hero",
+      "src_components_hero_hero",
+      "src_components_navigation",
+      "src_components_navigation_navigation",
+      "src_components_navigation_sections",
+      "src_components_smoothscroll",
+      "src_components_smoothscroll_smoothscroll",
+      "src_components_visualos",
+      "src_components_visualos_films",
+      "src_components_visualos_visualos"
+    ],
+    "1": [
+      "autoprefixer",
+      "package_devdependencies",
+      "package_devdependencies_autoprefixer",
+      "package_devdependencies_playwright",
+      "package_devdependencies_postcss",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_types_three",
+      "package_devdependencies_typescript",
+      "playwright",
+      "postcss",
+      "tailwindcss",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "types_three",
+      "typescript"
+    ],
+    "2": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target"
+    ],
+    "3": [
+      "gsap",
+      "lenis",
+      "next",
+      "package_dependencies",
+      "package_dependencies_gsap",
+      "package_dependencies_lenis",
+      "package_dependencies_next",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_three",
+      "react",
+      "react_dom",
+      "three"
+    ],
+    "4": [
+      "src_components_listen",
+      "src_components_listen_listen",
+      "src_components_listen_platforms",
+      "src_components_listen_releases",
+      "src_components_philosophy",
+      "src_components_philosophy_philosophy",
+      "src_components_philosophy_principles",
+      "src_lib_motion",
+      "src_lib_motion_prefersreducedmotion",
+      "src_lib_reveal",
+      "src_lib_reveal_revealonenter",
+      "src_lib_reveal_revealvars"
+    ],
+    "5": [
+      "package",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_start",
+      "package_version"
+    ],
+    "6": [
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "tsconfig",
+      "tsconfig_exclude",
+      "tsconfig_include"
+    ],
+    "7": [
+      "src_app_layout",
+      "src_app_layout_inter",
+      "src_app_layout_jetbrains",
+      "src_app_layout_metadata",
+      "src_app_layout_playfair",
+      "src_app_layout_rootlayout",
+      "src_app_layout_viewport"
+    ],
+    "8": [
+      "src_components_trackvisualizer",
+      "src_components_trackvisualizer_drawwaveform",
+      "src_components_trackvisualizer_trackdata",
+      "src_components_trackvisualizer_trackvisualizer"
+    ],
+    "9": [
+      "src_lib_smoothscroll",
+      "src_lib_smoothscroll_scrolltotarget",
+      "src_lib_smoothscroll_setlenis"
+    ],
+    "10": [
+      "next_config",
+      "next_config_nextconfig"
+    ],
+    "11": [
+      "next_env_d",
+      "next_env_d_rationale_4"
+    ],
+    "12": [
+      "screenshot",
+      "screenshot_enterbtn"
+    ],
+    "13": [
+      "src_app_not_found",
+      "src_app_not_found_notfound"
+    ],
+    "14": [
+      "src_app_robots",
+      "src_app_robots_robots"
+    ],
+    "15": [
+      "src_app_sitemap",
+      "src_app_sitemap_sitemap"
+    ],
+    "16": [
+      "postcss_config"
+    ],
+    "17": [
+      "tailwind_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1225296442687747,
+    "1": 0.10526315789473684,
+    "2": 0.10526315789473684,
+    "3": 0.15384615384615385,
+    "4": 0.25757575757575757,
+    "5": 0.2222222222222222,
+    "6": 0.25,
+    "7": 0.2857142857142857,
+    "8": 0.6666666666666666,
+    "9": 0.6666666666666666,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0
+  },
+  "gods": [
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 5
+    },
+    {
+      "id": "src_lib_motion_prefersreducedmotion",
+      "label": "prefersReducedMotion()",
+      "degree": 5
+    },
+    {
+      "id": "tsconfig_include",
+      "label": "include",
+      "degree": 5
+    },
+    {
+      "id": "src_lib_reveal_revealonenter",
+      "label": "revealOnEnter()",
+      "degree": 4
+    },
+    {
+      "id": "tsconfig_compileroptions_lib",
+      "label": "lib",
+      "degree": 4
+    },
+    {
+      "id": "src_components_trackvisualizer_trackvisualizer",
+      "label": "TrackVisualizer()",
+      "degree": 3
+    },
+    {
+      "id": "package_dependencies_gsap",
+      "label": "gsap",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_lenis",
+      "label": "lenis",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_next",
+      "label": "next",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Philosophy()",
+      "target": "prefersReducedMotion()",
+      "source_files": [
+        "src/components/Philosophy.tsx",
+        "src/lib/motion.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `Philosophy()` unexpectedly reaches hub `prefersReducedMotion()`"
+    },
+    {
+      "source": "Listen()",
+      "target": "revealOnEnter()",
+      "source_files": [
+        "src/components/Listen.tsx",
+        "src/lib/reveal.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "revealOnEnter()",
+      "target": "prefersReducedMotion()",
+      "source_files": [
+        "src/lib/reveal.ts",
+        "src/lib/motion.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

@@ -139,6 +139,8 @@ export function TrackVisualizer() {
           ref={canvasRef}
           className="w-full h-[120px] md:h-[180px] mb-16 opacity-80"
           style={{ imageRendering: 'auto' }}
+          role="img"
+          aria-label="Waveform cartography visualization showing the frequency and amplitude shape of each track across the Phoneme and Deep Field Image albums"
         />
 
         {/* Track listing with visual indicators */}
@@ -156,7 +158,7 @@ export function TrackVisualizer() {
               <div className="flex-1">
                 <span className="text-[13px] text-light-dim group-hover:text-light transition-colors">{track.name}</span>
               </div>
-              <span className="font-mono text-[8px] tracking-[0.05em] uppercase text-light-muted opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="font-mono text-[8px] tracking-[0.05em] uppercase text-light-muted">
                 {track.freq.toFixed(1)}Hz · {(track.amp * 100).toFixed(0)}%
               </span>
             </div>

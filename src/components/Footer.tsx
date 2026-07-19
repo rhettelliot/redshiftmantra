@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           {/* Coordinates */}
-          <div className="font-mono text-[9px] tracking-[0.1em] text-light-muted opacity-30">
+          <div className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted">
             <div>47.6062° N</div>
             <div>122.3321° W</div>
             <div className="mt-2">Manteis Recordings</div>
@@ -62,10 +62,10 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-          <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted opacity-40">
+          <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted">
             © {new Date().getFullYear()} Red Shift Mantra · All rights reserved
           </div>
-          <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted opacity-40">
+          <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted">
             Built with the void · Designed by Xen
           </div>
         </div>

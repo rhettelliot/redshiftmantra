@@ -3,4 +3,5 @@ node_modules/
 out/
 .DS_Store
 *.tsbuildinfo
-next-env.d.ts
+next-env.d.tsgraphify-out/
+.vercel

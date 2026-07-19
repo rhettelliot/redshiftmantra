@@ -8,6 +8,8 @@ export function AmbientOrb() {
   const mouseRef = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0, y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0 })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     if (window.matchMedia('(hover: none)').matches) return
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -45,6 +47,7 @@ export function AmbientOrb() {
         mixBlendMode: 'screen',
         zIndex: 1,
       }}
+      aria-hidden="true"
     />
   )
 }

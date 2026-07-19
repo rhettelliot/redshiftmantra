@@ -3,11 +3,15 @@
 import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import { setLenis } from '@/lib/smoothScroll'
+import { prefersReducedMotion } from '@/lib/motion'
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    // Respect user motion preferences: skip smooth scrolling under reduced motion.
+    if (prefersReducedMotion()) return
+
     const lenis = new Lenis({
       lerp: 0.07,
       smoothWheel: true,

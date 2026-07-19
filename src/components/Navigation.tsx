@@ -67,28 +67,41 @@ export function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  // Close mobile menu on Escape
+  useEffect(() => {
+    if (!menuOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
+
   return (
-    <>
+    <header>
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled ? 'bg-void/90 backdrop-blur-lg border-b border-[var(--border)]' : 'bg-transparent'
         }`}
         style={{ opacity: 0 }}
+        aria-label="Primary navigation"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between"
+        >
           {/* Logo */}
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); scrollToTarget(0) }}
             className="font-mono text-[11px] tracking-[0.2em] uppercase text-light hover:text-accent transition-colors cursor-none"
             data-cursor
+            aria-label="Red Shift Mantra home"
           >
             <span className="text-accent">R</span>SM
           </a>
 
           {/* Desktop section links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8" aria-label="Sections">
             {sections.map((s) => {
               const isActive = active === s.href
               return (
@@ -102,7 +115,7 @@ export function Navigation() {
                   }`}
                   data-cursor
                 >
-                  <span className={`text-[8px] ${isActive ? 'opacity-100' : 'opacity-40'}`}>{s.label}</span>
+                  <span className={`text-[8px] ${isActive ? 'text-accent' : 'text-light-muted'}`}>{s.label}</span>
                   {s.title}
                 </a>
               )
@@ -112,7 +125,7 @@ export function Navigation() {
           <div className="flex items-center gap-4">
             {/* Status indicator — desktop only */}
             <div className="hidden md:flex items-center gap-2">
-              <div className="w-[6px] h-[6px] bg-accent" style={{ borderRadius: 0 }} />
+              <div className="w-[6px] h-[6px] bg-accent" style={{ borderRadius: 0 }} aria-hidden="true" />
               <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted">
                 {scrolled ? 'active' : 'standby'}
               </span>
@@ -124,6 +137,7 @@ export function Navigation() {
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
               data-cursor
             >
               <div
@@ -154,9 +168,13 @@ export function Navigation() {
 
       {/* Mobile fullscreen menu */}
       <div
+        id="mobile-menu"
         className={`fixed inset-0 z-40 bg-void flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
+        aria-label="Mobile navigation"
+        role="dialog"
+        aria-modal="false"
       >
         <div className="flex flex-col items-center gap-12">
           {sections.map((s, i) => (
@@ -189,12 +207,12 @@ export function Navigation() {
 
         {/* Mobile status */}
         <div className="absolute bottom-8 flex items-center gap-2">
-          <div className="w-[6px] h-[6px] bg-accent" style={{ borderRadius: 0 }} />
+          <div className="w-[6px] h-[6px] bg-accent" style={{ borderRadius: 0 }} aria-hidden="true" />
           <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted">
             Red Shift Mantra
           </span>
         </div>
       </div>
-    </>
+    </header>
   )
 }

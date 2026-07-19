@@ -18,7 +18,7 @@ export default function Home() {
       <AmbientOrb />
       <Gatekeeper />
       <Navigation />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Philosophy />
         <Albums />
