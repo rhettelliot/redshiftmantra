@@ -47,7 +47,7 @@ export function Philosophy() {
       // IntersectionObserver (not ScrollTrigger) so the reveal can't be
       // stranded by stale scroll positions under Lenis.
       items.forEach((item) =>
-        gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 0.08, scale: 0.98, filter: 'blur(6px)' })
+        gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 0.5, scale: 0.98, filter: 'blur(2px)' })
       )
 
       io = new IntersectionObserver(
