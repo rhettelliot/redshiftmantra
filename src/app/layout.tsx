@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   title: 'Red Shift Mantra',
   metadataBase: new URL('https://redshiftmantra.com'),
   description: 'The geometry of sound. The transmutation of matter. Electronic / Synthwave by Manteis Recordings.',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.svg',
   },

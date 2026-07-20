@@ -5,7 +5,7 @@
 /* ═════════════════════════════════════════════════
    RED SHIFT MANTRA — Antigravity OS / Cosmic Pressure
    The Void is the Canvas. Typography is Architecture.
-   One signal: #007AFF. Everything else is restraint.
+   One signal: #FF4D00. Secondary #007AFF (Phoneme only).
    ═════════════════════════════════════════════════ */
 
 :root {
@@ -21,15 +21,17 @@
   --light-muted: #888888;
   --light-faint: #767676;
 
-  /* Signal — the single accent. Cosmic, cold, precise. */
-  --signal: #007AFF;
-  --signal-dim: rgba(0, 122, 255, 0.12);
-  --signal-glow: rgba(0, 122, 255, 0.35);
-  --signal-border: rgba(0, 122, 255, 0.40);
+  /* Signal — the single accent. Safety Orange, 6.3:1 on void. */
+  --signal: #FF4D00;
+  --signal-dim: rgba(255, 77, 0, 0.12);
+  --signal-glow: rgba(255, 77, 0, 0.35);
+  --signal-border: rgba(255, 77, 0, 0.40);
   /* Legacy alias kept so accent-* utilities resolve to the signal */
-  --accent: #007AFF;
-  --accent-dim: rgba(0, 122, 255, 0.12);
-  --accent-glow: rgba(0, 122, 255, 0.35);
+  --accent: #FF4D00;
+  --accent-dim: rgba(255, 77, 0, 0.12);
+  --accent-glow: rgba(255, 77, 0, 0.35);
+  /* Secondary signal — reserved for Phoneme album accents only */
+  --accent-blue: #007AFF;
 
   /* Surfaces */
   --surface: #0C0C0C;
@@ -43,10 +45,10 @@
   --edge-clear: rgba(255, 255, 255, 0.22);
   --edge-bright: rgba(255, 255, 255, 0.45);
   --border: rgba(255, 255, 255, 0.08);
-  --border-active: #007AFF;
+  --border-active: #FF4D00;
 
   /* Typography */
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
@@ -94,7 +96,7 @@ body {
 /* ─── Selection ─── */
 ::selection {
   background: var(--signal);
-  color: var(--light);
+  color: var(--void); /* black on #FF4D00 = 6.3:1; white failed AA at 3.3:1 */
 }
 
 /* ─── Custom Cursor: the square CustomCursor is a visual enhancement layer
@@ -233,8 +235,8 @@ a:focus-visible,
 }
 .badge-signal {
   background: var(--signal-dim);
-  color: #4DA6FF;
-  border-color: rgba(0, 122, 255, 0.25);
+  color: var(--signal);
+  border-color: rgba(255, 77, 0, 0.25);
 }
 
 /* ─── Reduced Motion ─── */

@@ -97,6 +97,7 @@ export function Albums() {
                     className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border hover:bg-accent hover:text-void hover:border-accent transition-all duration-300 cursor-none"
                     style={{ borderRadius: 0, borderColor: album.color, color: album.color }}
                     data-cursor
+                    aria-label={`Listen to ${album.title} — all platforms`}
                   >
                     Listen
                   </a>
@@ -106,6 +107,7 @@ export function Albums() {
                     rel="noreferrer noopener"
                     className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors cursor-none"
                     data-cursor
+                    aria-label={`${album.title} on Spotify`}
                   >
                     Spotify →
                   </a>

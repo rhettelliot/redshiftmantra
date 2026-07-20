@@ -76,7 +76,7 @@ export function Hero() {
       {/* Content */}
       <div ref={titleRef} className="relative z-10 text-center px-6">
         <div className="hero-badge section-label mb-6" style={{ opacity: 0 }}>
-          <span className="badge badge-orange">Electronic / Synthwave</span>
+          <span className="badge badge-signal">Electronic / Synthwave</span>
         </div>
 
         <h1 className="hero-title text-[clamp(3rem,10vw,9rem)] leading-[0.9] mb-2" style={{ opacity: 0 }}>

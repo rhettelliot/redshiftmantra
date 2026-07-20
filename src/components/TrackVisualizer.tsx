@@ -11,16 +11,16 @@ const trackData = [
   { name: 'Hokku', freq: 1.5, amp: 0.4, color: '#007AFF' },
   { name: 'Super Fluous', freq: 2.0, amp: 0.6, color: '#007AFF' },
   { name: 'Byaiana', freq: 0.9, amp: 0.8, color: '#007AFF' },
-  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#4DA6FF' },
-  { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF6B35' },
+  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#007AFF' },
+  { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF4D00' },
   { name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF4D00' },
   { name: '───', freq: 0, amp: 0, color: '#333' }, // divider
   { name: 'Obsidian', freq: 0.4, amp: 0.9, color: '#FF4D00' },
   { name: 'Rain', freq: 1.8, amp: 0.6, color: '#FF4D00' },
   { name: 'Kobayashi Maru', freq: 1.0, amp: 0.8, color: '#FF4D00' },
-  { name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF6B35' },
+  { name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF4D00' },
   { name: 'Cloud Noise', freq: 2.2, amp: 0.7, color: '#FF4D00' },
-  { name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF6B35' },
+  { name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF4D00' },
   { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF4D00' },
 ]
 

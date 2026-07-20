@@ -14,7 +14,7 @@ const films = [
     album: 'Deep Field Image',
     track: 'Prominence',
     visual: 'Cosmic fire → Rebirth',
-    palette: ['#0D0000', '#3D0C00', '#FF6B35'],
+    palette: ['#0D0000', '#3D0C00', '#FF4D00'],
   },
   {
     album: 'Phoneme',
@@ -26,7 +26,7 @@ const films = [
     album: 'Phoneme',
     track: 'Surface Tension',
     visual: 'Boundary → Membrane',
-    palette: ['#00101A', '#003D66', '#4DA6FF'],
+    palette: ['#00101A', '#003D66', '#007AFF'],
   },
 ]
 
