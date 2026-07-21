@@ -11,7 +11,7 @@ import { SmoothScroll } from '@/components/SmoothScroll'
 import { CustomCursor } from '@/components/CustomCursor'
 import { AmbientOrb } from '@/components/AmbientOrb'
 
-const SITE = 'https://redshiftmantra.com'
+const SITE = 'https://redshiftmantra.vercel.app'
 const ARTIST_ID = `${SITE}/#artist`
 
 const albumSchema = (album: {

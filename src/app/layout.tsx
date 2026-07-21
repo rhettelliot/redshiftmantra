@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Red Shift Mantra',
-  metadataBase: new URL('https://redshiftmantra.com'),
+  metadataBase: new URL('https://redshiftmantra.vercel.app'),
   description: 'The geometry of sound. The transmutation of matter. Electronic / Synthwave by Manteis Recordings.',
   alternates: {
     canonical: '/',
