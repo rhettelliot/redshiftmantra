@@ -82,7 +82,7 @@ export function Navigation() {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-void/90 backdrop-blur-lg border-b border-[var(--border)]' : 'bg-transparent'
+          scrolled ? 'bg-void/95 border-b border-[var(--border)]' : 'bg-transparent'
         }`}
         style={{ opacity: 0 }}
         aria-label="Primary navigation"
@@ -174,7 +174,7 @@ export function Navigation() {
         }`}
         aria-label="Mobile navigation"
         role="dialog"
-        aria-modal="false"
+        aria-modal="true"
       >
         <div className="flex flex-col items-center gap-12">
           {sections.map((s, i) => (

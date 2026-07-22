@@ -132,17 +132,6 @@ export function Gatekeeper() {
         Press Enter, Space, or Escape to enter the Red Shift Mantra experience.
       </span>
 
-      {/* Cosmic red-shift background glow */}
-      <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        style={{
-          background: mounted
-            ? 'radial-gradient(ellipse at 50% 50%, rgba(255,77,0,0.08) 0%, rgba(0,0,0,0) 60%)'
-            : 'none',
-        }}
-        aria-hidden="true"
-      />
-
       {/* Floating particles — deterministic positions to avoid hydration mismatch */}
       {mounted && !reducedMotion && (
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

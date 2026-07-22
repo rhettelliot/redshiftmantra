@@ -59,16 +59,20 @@ export function VisualOS() {
             <div key={i} className="film-card group">
               {/* Color palette swatch */}
               <div
-                className="aspect-[16/10] mb-4 relative overflow-hidden"
+                className="aspect-[16/10] mb-4 relative overflow-hidden flex"
                 style={{
-                  background: `linear-gradient(135deg, ${film.palette[0]} 0%, ${film.palette[1]} 50%, ${film.palette[2]} 100%)`,
+                  background: film.palette[1],
                   borderRadius: 0,
                 }}
                 aria-hidden="true"
               >
+                <div className="flex-1" style={{ backgroundColor: film.palette[0] }} />
+                <div className="flex-1" style={{ backgroundColor: film.palette[1] }} />
+                <div className="flex-1" style={{ backgroundColor: film.palette[2] }} />
                 {/* Scan line effect */}
                 <div className="absolute inset-0 opacity-20" style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+                  backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+                  backgroundSize: '100% 4px',
                 }} />
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-void/0 group-hover:bg-void/40 transition-all duration-500 flex items-end p-4">

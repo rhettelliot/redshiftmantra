@@ -56,7 +56,7 @@ export function Hero() {
     <section
       ref={heroRef}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(255,77,0,0.04) 0%, rgba(0,0,0,0) 70%)' }}
+      style={{ background: 'var(--void)' }}
     >
       {/* Skeletal perspective grid */}
       <div
@@ -94,7 +94,7 @@ export function Hero() {
         <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted">
           Scroll
         </span>
-        <div className="scroll-indicator-line w-[1px] h-12 bg-gradient-to-b from-accent/70 to-transparent" />
+        <div className="scroll-indicator-line w-[1px] h-12 bg-accent/70" />
       </div>
     </section>
   )
