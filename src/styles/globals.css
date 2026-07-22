@@ -170,7 +170,7 @@ a:focus-visible,
   outline-offset: 4px;
 }
 
-/* Ensure interactive elements under cursor-none still show native focus ring */
+/* Ensure interactive elements with data-cursor still show native focus ring */
 [data-cursor]:focus-visible {
   outline: 2px solid var(--signal);
   outline-offset: 4px;

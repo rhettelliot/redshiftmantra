@@ -93,7 +93,7 @@ export function Navigation() {
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); scrollToTarget(0) }}
-            className="font-mono text-[11px] tracking-[0.2em] uppercase text-light hover:text-accent transition-colors cursor-none"
+            className="font-mono text-[11px] tracking-[0.2em] uppercase text-light hover:text-accent transition-colors"
             data-cursor
             aria-label="Red Shift Mantra home"
           >
@@ -110,7 +110,7 @@ export function Navigation() {
                   href={s.href}
                   onClick={(e) => { e.preventDefault(); scrollToTarget(s.href) }}
                   aria-current={isActive ? 'true' : undefined}
-                  className={`font-mono text-[10px] tracking-[0.15em] uppercase transition-colors cursor-none flex items-center gap-2 ${
+                  className={`font-mono text-[10px] tracking-[0.15em] uppercase transition-colors flex items-center gap-2 ${
                     isActive ? 'text-accent' : 'text-light-muted hover:text-accent'
                   }`}
                   data-cursor
@@ -133,7 +133,7 @@ export function Navigation() {
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden flex flex-col items-end gap-[5px] cursor-none p-2"
+              className="md:hidden flex flex-col items-end gap-[5px] p-2"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
@@ -187,7 +187,7 @@ export function Navigation() {
                 // Wait for the menu's body-scroll-lock to release before scrolling.
                 setTimeout(() => scrollToTarget(s.href), 50)
               }}
-              className="group text-center cursor-none"
+              className="group text-center"
               data-cursor
               style={{
                 transform: menuOpen ? 'translateY(0)' : `translateY(${20 + i * 10}px)`,
