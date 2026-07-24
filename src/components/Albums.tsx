@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
+import { prefersReducedMotion } from '@/lib/motion'
 
 interface Album {
   id: string
@@ -59,6 +60,75 @@ export function Albums() {
     return () => dispose()
   }, [])
 
+  // Parallax tilt cards — 3D mouse-follow with spring physics.
+  useEffect(() => {
+    const cards = Array.from(sectionRef.current?.querySelectorAll('.tilt-card') ?? [])
+    if (!cards.length) return
+
+    let rafId = 0
+    const springs = new Map<Element, { rx: number; ry: number; tx: number; ty: number }>()
+    cards.forEach((card) => springs.set(card, { rx: 0, ry: 0, tx: 0, ty: 0 }))
+
+    const reduced = prefersReducedMotion()
+
+    const onMove = (e: MouseEvent) => {
+      cards.forEach((card) => {
+        const rect = (card as HTMLElement).getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        const cx = rect.width / 2
+        const cy = rect.height / 2
+        const px = (x - cx) / cx
+        const py = (y - cy) / cy
+        springs.set(card, {
+          rx: py * -8, // rotateX follows vertical mouse
+          ry: px * 8,  // rotateY follows horizontal mouse
+          tx: px * 12,
+          ty: py * 12,
+        })
+      })
+    }
+
+    const onLeave = () => {
+      cards.forEach((card) => springs.set(card, { rx: 0, ry: 0, tx: 0, ty: 0 }))
+    }
+
+    const tick = () => {
+      cards.forEach((card) => {
+        const s = springs.get(card)!
+        const el = card as HTMLElement
+        const st = window.getComputedStyle(el)
+        const currentRx = parseFloat(st.getPropertyValue('--rx') || '0')
+        const currentRy = parseFloat(st.getPropertyValue('--ry') || '0')
+        const currentTx = parseFloat(st.getPropertyValue('--tx') || '0')
+        const currentTy = parseFloat(st.getPropertyValue('--ty') || '0')
+
+        const k = reduced ? 1 : 0.08 // spring stiffness
+        const nextRx = currentRx + (s.rx - currentRx) * k
+        const nextRy = currentRy + (s.ry - currentRy) * k
+        const nextTx = currentTx + (s.tx - currentTx) * k
+        const nextTy = currentTy + (s.ty - currentTy) * k
+
+        el.style.setProperty('--rx', `${nextRx}`)
+        el.style.setProperty('--ry', `${nextRy}`)
+        el.style.setProperty('--tx', `${nextTx}`)
+        el.style.setProperty('--ty', `${nextTy}`)
+        el.style.transform = `perspective(900px) rotateX(${nextRx}deg) rotateY(${nextRy}deg) translate3d(${nextTx}px, ${nextTy}px, 0px)`
+      })
+      rafId = requestAnimationFrame(tick)
+    }
+
+    sectionRef.current?.addEventListener('mousemove', onMove)
+    cards.forEach((card) => card.addEventListener('mouseleave', onLeave))
+    rafId = requestAnimationFrame(tick)
+
+    return () => {
+      sectionRef.current?.removeEventListener('mousemove', onMove)
+      cards.forEach((card) => card.removeEventListener('mouseleave', onLeave))
+      cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   return (
     <section ref={sectionRef} id="albums" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
@@ -68,7 +138,14 @@ export function Albums() {
 
         <div className="space-y-16 md:space-y-24">
           {albums.map((album) => (
-            <div key={album.id} className="album-card grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+            <div
+              key={album.id}
+              className="album-card tilt-card grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 p-2 md:p-0"
+              style={{
+                transformStyle: 'preserve-3d',
+                willChange: 'transform',
+              }}
+            >
               {/* Left: identity */}
               <div className="md:col-span-5">
                 <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-3" style={{ color: album.color }}>
