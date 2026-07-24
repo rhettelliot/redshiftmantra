@@ -3,9 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
 
-// Per-platform search links — these resolve to the artist on every service.
-// Swap in canonical /artist/<id> URLs once each platform's artist page is known
-// (the Spotify artist page is already linked via the album entries below).
+// Per-platform search links
 const platforms = [
   { name: 'Spotify', url: 'https://open.spotify.com/search/Red%20Shift%20Mantra', icon: '◈' },
   { name: 'Apple Music', url: 'https://music.apple.com/us/search?term=Red+Shift+Mantra', icon: '⬡' },
@@ -17,6 +15,7 @@ const platforms = [
 const releases = [
   {
     title: 'Phoneme',
+    catalog: 'MR-002',
     subtitle: 'The Geometry of Sound',
     year: '2025',
     trackCount: 9,
@@ -26,6 +25,7 @@ const releases = [
   },
   {
     title: 'Deep Field Image',
+    catalog: 'MR-006',
     subtitle: 'The Transmutation of Matter',
     year: '2025',
     trackCount: 7,
@@ -62,6 +62,22 @@ export function Listen() {
           All platforms · Lossless where available
         </p>
 
+        {/* Catalog numbers as ambient display art */}
+        <div className="hidden md:flex items-center justify-between gap-4 mb-12">
+          {releases.map((release) => (
+            <div
+              key={release.catalog}
+              className="catalog-number"
+              style={{
+                color: `${release.color}08`,
+                WebkitTextStroke: `1px ${release.color}24`,
+              }}
+            >
+              {release.catalog}
+            </div>
+          ))}
+        </div>
+
         {/* Albums with enriched data */}
         <div className="space-y-4 mb-16">
           {releases.map((release, i) => (
@@ -82,7 +98,7 @@ export function Listen() {
                     {release.title}
                   </span>
                   <span className="block font-mono text-[9px] tracking-[0.1em] uppercase mt-1" style={{ color: release.color }}>
-                    {release.year} · {release.trackCount} tracks · {release.subtitle}
+                    {release.catalog} · {release.year} · {release.trackCount} tracks · {release.subtitle}
                   </span>
                 </div>
               </div>

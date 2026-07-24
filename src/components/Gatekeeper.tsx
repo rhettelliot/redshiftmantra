@@ -9,19 +9,16 @@ export function Gatekeeper() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Skip gate if already entered this session
     if (sessionStorage.getItem('rsm-entered')) {
       setEntered(true)
       return
     }
     setMounted(true)
 
-    // Staggered entrance animation
     const animate = async () => {
       const gate = gateRef.current
       if (!gate) return
 
-      // Reduced motion: reveal all gate content instantly.
       if (prefersReducedMotion()) {
         gate
           .querySelectorAll<HTMLElement>('.gate-label, .gate-title, .gate-subtitle, .gate-button')
@@ -62,7 +59,6 @@ export function Gatekeeper() {
     animate()
   }, [])
 
-  // Dismiss gate with Escape
   useEffect(() => {
     if (entered) return
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -78,7 +74,6 @@ export function Gatekeeper() {
 
     sessionStorage.setItem('rsm-entered', '1')
 
-    // Reduced motion: dismiss immediately, no cinematic exit.
     if (prefersReducedMotion()) {
       setEntered(true)
       return
@@ -89,12 +84,10 @@ export function Gatekeeper() {
     const tl = gsap.timeline({
       onComplete: () => {
         setEntered(true)
-        // Move focus to main content so keyboard users land in the page.
         document.getElementById('main')?.focus()
       },
     })
 
-    // Cinematic staggered exit
     tl.to(gate.querySelector('.gate-button'), {
       scale: 0.95, opacity: 0, duration: 0.3, ease: 'power2.in',
     })
@@ -132,7 +125,11 @@ export function Gatekeeper() {
         Press Enter, Space, or Escape to enter the Red Shift Mantra experience.
       </span>
 
-      {/* Floating particles — deterministic positions to avoid hydration mismatch */}
+      {/* Topographic star map overlay in gate */}
+      <div className="topo-overlay opacity-40" aria-hidden="true" />
+      <div className="topo-contours opacity-30" aria-hidden="true" />
+
+      {/* Floating particles */}
       {mounted && !reducedMotion && (
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
           {Array.from({ length: 20 }).map((_, i) => (
@@ -145,7 +142,7 @@ export function Gatekeeper() {
                 left: `${(i * 37 + 11) % 100}%`,
                 top: `${(i * 53 + 7) % 100}%`,
                 backgroundColor:
-                  i % 2 === 0 ? 'rgba(255,77,0,0.4)' : 'rgba(255,255,255,0.15)',
+                  i % 2 === 0 ? 'rgba(255,77,0,0.4)' : 'rgba(253,252,220,0.15)',
                 animation: `floatUp ${15 + ((i * 13) % 20)}s linear infinite`,
                 animationDelay: `${(i * 17) % 10}s`,
               }}
@@ -164,7 +161,7 @@ export function Gatekeeper() {
           className="gate-title text-[clamp(2.5rem,8vw,7rem)] font-display font-[900] leading-[0.95] tracking-[-0.02em] text-light mb-4"
           style={{ opacity: 0 }}
         >
-          <span className="hollow-text">Red Shift</span>
+          <span className="hollow-text text-glow-red">Red Shift</span>
           <br />
           <span className="text-accent">Mantra</span>
         </h2>

@@ -22,7 +22,6 @@ export function Hero() {
       const visual = container.querySelector('.hero-visual')
       const scroll = heroRef.current?.querySelector('.hero-scroll') ?? null
 
-      // Reduced motion: reveal everything instantly, skip the cinematic intro.
       if (prefersReducedMotion()) {
         ;[badge, label, title, tagline, visual, scroll].forEach((el) => {
           if (el) (el as HTMLElement).style.opacity = '1'
@@ -67,7 +66,7 @@ export function Hero() {
     animate()
   }, [])
 
-  // Curtain reveal on scroll: hero splits apart like a curtain.
+  // Curtain reveal on scroll
   useEffect(() => {
     const left = leftCurtainRef.current
     const right = rightCurtainRef.current
@@ -114,7 +113,7 @@ export function Hero() {
     }
   }, [])
 
-  // Scroll progress path — SVG line that draws itself as user scrolls page.
+  // Scroll progress path
   useEffect(() => {
     const path = progressRef.current
     if (!path) return
@@ -170,11 +169,11 @@ export function Hero() {
 
   return (
     <>
-      {/* Silkscreen hardware label — pinned top strip */}
+      {/* Silkscreen hardware label */}
       <div className="fixed top-0 left-0 right-0 z-[60] pointer-events-none">
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-7 flex items-center justify-between">
           <span className="hero-hw-label font-mono text-[9px] tracking-[0.25em] uppercase text-light-muted/80" style={{ opacity: 0 }}>
-            RSM-001 // SYNTHWAVE PROTOCOL
+            RSM-001 // COSMIC OBSERVATORY
           </span>
           <span className="hero-hw-label font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted/50 hidden sm:inline" style={{ opacity: 0 }}>
             MANTEIS RECORDINGS // 2025
@@ -182,7 +181,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll progress path — right edge of viewport */}
+      {/* Scroll progress path */}
       <svg
         className="fixed top-0 right-0 h-full w-[80px] md:w-[120px] z-[55] pointer-events-none"
         viewBox="0 0 100 100"
@@ -204,6 +203,13 @@ export function Hero() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ background: 'var(--void)' }}
       >
+        {/* 1. Topographic star map overlay */}
+        <div className="topo-overlay" aria-hidden="true" />
+        <div className="topo-contours" aria-hidden="true" />
+
+        {/* Subtle star field behind contours */}
+        <div className="star-field" aria-hidden="true" />
+
         {/* Left curtain panel */}
         <div
           ref={leftCurtainRef}
@@ -224,17 +230,8 @@ export function Hero() {
 
         {/* Skeletal perspective grid */}
         <div
-          className="absolute bottom-0 left-[-50%] w-[200%] h-[60%] z-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-            transform: 'perspective(1000px) rotateX(70deg)',
-            transformOrigin: 'bottom center',
-            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-          }}
+          className="perspective-grid z-0"
+          aria-hidden="true"
         />
 
         {/* Content — asymmetric split layout */}
@@ -249,7 +246,7 @@ export function Hero() {
             </div>
 
             <h1 className="hero-title text-[clamp(3rem,10vw,8rem)] leading-[0.9] mb-4" style={{ opacity: 0 }}>
-              <span className="block hollow-text">Red Shift</span>
+              <span className="block hollow-text text-glow-red">Red Shift</span>
               <span className="block text-accent">Mantra</span>
             </h1>
 
@@ -268,13 +265,12 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: visual / audio element — Nagra-style tape reel visualizer */}
+          {/* Right: Nagra-style tape reel visualizer — now inside hex mask */}
           <div className="hero-visual relative flex items-center justify-center md:justify-end" style={{ opacity: 0 }}>
-            <div className="relative w-full max-w-[420px] aspect-square">
-              {/* Outer chassis frame */}
+            <div className="hex-mask relative w-full max-w-[420px] aspect-square p-[2px] hex-outline">
               <div
                 className="absolute inset-0 border border-edge-faint/40"
-                style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.02) 100%)' }}
+                style={{ background: 'linear-gradient(135deg, rgba(253,252,220,0.02) 0%, rgba(253,252,220,0) 50%, rgba(253,252,220,0.02) 100%)' }}
               />
 
               {/* Corner brackets */}
@@ -296,10 +292,8 @@ export function Hero() {
               {/* Reel cluster */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-[64%] aspect-square">
-                  {/* Static outer ring */}
                   <div className="absolute inset-0 border border-edge-faint/25" style={{ transform: 'rotate(45deg)' }} />
 
-                  {/* Spinning reel */}
                   <div
                     className="absolute inset-2 border-2 border-dashed border-accent/40"
                     style={{ borderRadius: '50%', animation: 'spinReel 12s linear infinite' }}
@@ -317,7 +311,6 @@ export function Hero() {
                     </div>
                   </div>
 
-                  {/* Sweeping playhead arm */}
                   <div
                     className="absolute top-1/2 left-1/2 w-[44%] h-[2px] origin-left"
                     style={{
@@ -354,7 +347,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator — pinned to viewport bottom */}
+        {/* Scroll indicator */}
         <div className="hero-scroll absolute bottom-12 left-6 md:left-12 z-20 flex flex-col items-start gap-2" style={{ opacity: 0 }}>
           <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-light-muted">
             Scroll

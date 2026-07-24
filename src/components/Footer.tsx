@@ -2,7 +2,7 @@
 
 export function Footer() {
   return (
-    <footer className="py-16 border-t border-[var(--border)]">
+    <footer className="py-16 border-t border-[var(--border)] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* Brand */}
@@ -57,16 +57,14 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="divider-glow mt-12 mb-8" />
 
-        {/* Bottom */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted">
             © {new Date().getFullYear()} Red Shift Mantra · All rights reserved
           </div>
           <div className="font-mono text-[8px] tracking-[0.1em] uppercase text-light-muted">
-            Built with the void · Designed by Xen
+            Cosmic art system · MR-002 / MR-006
           </div>
         </div>
       </div>

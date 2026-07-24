@@ -35,7 +35,6 @@ export function Philosophy() {
 
       const gsap = (await import('gsap')).default
 
-      // Reduced motion: words stay fully legible, no blur reveal.
       if (prefersReducedMotion()) {
         items.forEach((item) =>
           gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 1, scale: 1, filter: 'none' })
@@ -43,9 +42,6 @@ export function Philosophy() {
         return
       }
 
-      // Hide words, then stagger them in when the paragraph enters view.
-      // IntersectionObserver (not ScrollTrigger) so the reveal can't be
-      // stranded by stale scroll positions under Lenis.
       items.forEach((item) =>
         gsap.set(item.querySelectorAll('.word-reveal'), { opacity: 0.65, scale: 0.98, filter: 'blur(2px)' })
       )
@@ -71,7 +67,7 @@ export function Philosophy() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="philosophy" className="py-20 md:py-28">
+    <section ref={sectionRef} id="philosophy" className="py-20 md:py-28 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-12">
           Philosophy /
@@ -80,7 +76,6 @@ export function Philosophy() {
         <div className="space-y-16 md:space-y-24">
           {principles.map((p) => (
             <div key={p.label} className="philosophy-item grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
-              {/* Left: marker + title */}
               <div className="md:col-span-5">
                 <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-4">
                   {p.label}
@@ -89,7 +84,6 @@ export function Philosophy() {
                   {p.title}
                 </h2>
               </div>
-              {/* Right: body */}
               <div className="md:col-span-7 text-[15px] leading-[1.8] text-light-dim md:pt-3">
                 {p.text.split(' ').map((word, i) => (
                   <span key={i} className="word-reveal inline-block mr-[0.3em]">{word}</span>

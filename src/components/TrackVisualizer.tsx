@@ -5,23 +5,23 @@ import { revealOnEnter } from '@/lib/reveal'
 
 // Track data with waveform-inspired visual parameters
 const trackData = [
-  { name: 'Piece of Ocean Water', freq: 0.8, amp: 0.3, color: '#007AFF' },
-  { name: 'Surface Tension', freq: 1.2, amp: 0.5, color: '#007AFF' },
-  { name: 'Xi', freq: 0.6, amp: 0.7, color: '#007AFF' },
-  { name: 'Hokku', freq: 1.5, amp: 0.4, color: '#007AFF' },
-  { name: 'Super Fluous', freq: 2.0, amp: 0.6, color: '#007AFF' },
-  { name: 'Byaiana', freq: 0.9, amp: 0.8, color: '#007AFF' },
-  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#007AFF' },
-  { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF4D00' },
-  { name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF4D00' },
-  { name: '───', freq: 0, amp: 0, color: '#333' }, // divider
-  { name: 'Obsidian', freq: 0.4, amp: 0.9, color: '#FF4D00' },
-  { name: 'Rain', freq: 1.8, amp: 0.6, color: '#FF4D00' },
-  { name: 'Kobayashi Maru', freq: 1.0, amp: 0.8, color: '#FF4D00' },
-  { name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF4D00' },
-  { name: 'Cloud Noise', freq: 2.2, amp: 0.7, color: '#FF4D00' },
-  { name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF4D00' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF4D00' },
+  { name: 'Piece of Ocean Water', freq: 0.8, amp: 0.3, color: '#007AFF', bpm: 92, duration: '4:18' },
+  { name: 'Surface Tension', freq: 1.2, amp: 0.5, color: '#007AFF', bpm: 88, duration: '4:42' },
+  { name: 'Xi', freq: 0.6, amp: 0.7, color: '#007AFF', bpm: 104, duration: '3:55' },
+  { name: 'Hokku', freq: 1.5, amp: 0.4, color: '#007AFF', bpm: 96, duration: '4:24' },
+  { name: 'Super Fluous', freq: 2.0, amp: 0.6, color: '#007AFF', bpm: 112, duration: '5:01' },
+  { name: 'Byaiana', freq: 0.9, amp: 0.8, color: '#007AFF', bpm: 84, duration: '5:33' },
+  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#007AFF', bpm: 90, duration: '4:47' },
+  { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF4D00', bpm: 76, duration: '5:12' },
+  { name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF4D00', bpm: 72, duration: '6:08' },
+  { name: '───', freq: 0, amp: 0, color: '#333', bpm: 0, duration: '' },
+  { name: 'Obsidian', freq: 0.4, amp: 0.9, color: '#FF4D00', bpm: 80, duration: '6:24' },
+  { name: 'Rain', freq: 1.8, amp: 0.6, color: '#FF4D00', bpm: 95, duration: '5:17' },
+  { name: 'Kobayashi Maru', freq: 1.0, amp: 0.8, color: '#FF4D00', bpm: 108, duration: '7:02' },
+  { name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF4D00', bpm: 86, duration: '6:51' },
+  { name: 'Cloud Noise', freq: 2.2, amp: 0.7, color: '#FF4D00', bpm: 118, duration: '5:38' },
+  { name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF4D00', bpm: 64, duration: '8:14' },
+  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF4D00', bpm: 74, duration: '10:34' },
 ]
 
 function drawWaveform(canvas: HTMLCanvasElement) {
@@ -40,8 +40,14 @@ function drawWaveform(canvas: HTMLCanvasElement) {
 
   ctx.clearRect(0, 0, width, height)
 
+  // Scanline background
+  ctx.fillStyle = 'rgba(253, 252, 220, 0.02)'
+  for (let y = 0; y < height; y += 4) {
+    ctx.fillRect(0, y, width, 1)
+  }
+
   // Draw center line
-  ctx.strokeStyle = 'rgba(255,255,255,0.03)'
+  ctx.strokeStyle = 'rgba(253,252,220,0.04)'
   ctx.lineWidth = 1
   ctx.beginPath()
   ctx.moveTo(0, midY)
@@ -53,8 +59,7 @@ function drawWaveform(canvas: HTMLCanvasElement) {
 
   trackData.forEach((track) => {
     if (track.freq === 0) {
-      // Divider — draw thin vertical line
-      ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+      ctx.strokeStyle = 'rgba(253,252,220,0.08)'
       ctx.lineWidth = 1
       ctx.beginPath()
       ctx.moveTo(x + segWidth / 2, midY - height * 0.3)
@@ -64,9 +69,11 @@ function drawWaveform(canvas: HTMLCanvasElement) {
       return
     }
 
-    // Glow layer (wide, faint)
+    const hexColor = track.color
+
+    // Glow layer
     ctx.beginPath()
-    ctx.strokeStyle = track.color + '15'
+    ctx.strokeStyle = hexColor + '15'
     ctx.lineWidth = 4
     for (let px = 0; px < segWidth; px++) {
       const t = px / segWidth
@@ -78,7 +85,7 @@ function drawWaveform(canvas: HTMLCanvasElement) {
 
     // Main waveform line
     ctx.beginPath()
-    ctx.strokeStyle = track.color + '60'
+    ctx.strokeStyle = hexColor + '70'
     ctx.lineWidth = 1.5
     for (let px = 0; px < segWidth; px++) {
       const t = px / segWidth
@@ -88,8 +95,27 @@ function drawWaveform(canvas: HTMLCanvasElement) {
     }
     ctx.stroke()
 
+    // Hex node markers at peaks
+    const peakY = midY + Math.sin(0.5 * Math.PI * 2 * track.freq) * (track.amp * height * 0.35)
+    drawHex(ctx, x + segWidth * 0.5, peakY, 3, hexColor)
+
     x += segWidth
   })
+}
+
+function drawHex(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, color: string) {
+  ctx.beginPath()
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i - Math.PI / 2
+    const px = x + r * Math.cos(angle)
+    const py = y + r * Math.sin(angle)
+    if (i === 0) ctx.moveTo(px, py)
+    else ctx.lineTo(px, py)
+  }
+  ctx.closePath()
+  ctx.strokeStyle = color
+  ctx.lineWidth = 1
+  ctx.stroke()
 }
 
 export function TrackVisualizer() {
@@ -109,7 +135,6 @@ export function TrackVisualizer() {
     return () => disposers.forEach((d) => d())
   }, [])
 
-  // Draw canvas waveforms with resize handling
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -134,16 +159,16 @@ export function TrackVisualizer() {
           Waveform<br />Cartography
         </h2>
 
-        {/* Canvas waveform */}
+        {/* Canvas waveform with scanlines */}
         <canvas
           ref={canvasRef}
-          className="w-full h-[120px] md:h-[180px] mb-16 opacity-80"
+          className="w-full h-[120px] md:h-[180px] mb-16 opacity-90 scanlines"
           style={{ imageRendering: 'auto' }}
           role="img"
           aria-label="Waveform cartography visualization showing the frequency and amplitude shape of each track across the Phoneme and Deep Field Image albums"
         />
 
-        {/* Track listing with visual indicators */}
+        {/* Track listing with visual indicators + metadata */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
           {trackData.filter(t => t.freq > 0).map((track) => (
             <div
@@ -157,6 +182,10 @@ export function TrackVisualizer() {
               />
               <div className="flex-1">
                 <span className="text-[13px] text-light-dim group-hover:text-light transition-colors">{track.name}</span>
+              </div>
+              <div className="hidden sm:flex items-center gap-2 mr-3">
+                <span className="meta-pill">{track.bpm} BPM</span>
+                <span className="meta-pill">{track.duration}</span>
               </div>
               <span className="font-mono text-[8px] tracking-[0.05em] uppercase text-light-muted">
                 {track.freq.toFixed(1)}Hz · {(track.amp * 100).toFixed(0)}%

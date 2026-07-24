@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Red Shift Mantra',
   metadataBase: new URL('https://redshiftmantra.vercel.app'),
-  description: 'The geometry of sound. The transmutation of matter. Electronic / Synthwave by Manteis Recordings.',
+  description: 'The geometry of sound. The transmutation of matter. Electronic / Synthwave cosmic art by Manteis Recordings.',
   alternates: {
     canonical: '/',
   },
@@ -64,8 +64,6 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {/* Without JS the gate can't be dismissed and intro-animated content
-            never reveals — degrade gracefully so the page stays usable. */}
         <noscript>
           <style>{`
             [aria-label="Welcome gate"] { display: none !important; }

@@ -41,7 +41,7 @@ export function VisualOS() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28">
+    <section ref={sectionRef} className="py-20 md:py-28 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="section-label mb-8">
           Visual OS /
@@ -57,9 +57,9 @@ export function VisualOS() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {films.map((film, i) => (
             <div key={i} className="film-card group">
-              {/* Color palette swatch */}
+              {/* Color palette swatch — with hex mask, concentric frames, scanlines */}
               <div
-                className="aspect-[16/10] mb-4 relative overflow-hidden flex"
+                className="frame-tunnel aspect-[16/10] mb-4 relative overflow-hidden flex hex-mask-soft scanlines"
                 style={{
                   background: film.palette[1],
                   borderRadius: 0,
@@ -69,11 +69,12 @@ export function VisualOS() {
                 <div className="flex-1" style={{ backgroundColor: film.palette[0] }} />
                 <div className="flex-1" style={{ backgroundColor: film.palette[1] }} />
                 <div className="flex-1" style={{ backgroundColor: film.palette[2] }} />
-                {/* Scan line effect */}
-                <div className="absolute inset-0 opacity-20" style={{
-                  backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-                  backgroundSize: '100% 4px',
-                }} />
+
+                {/* Nested frame rings */}
+                <div className="absolute inset-[8%] border border-light/10" />
+                <div className="absolute inset-[16%] border border-light/6" />
+                <div className="absolute inset-[24%] border border-light/4" />
+
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-void/0 group-hover:bg-void/40 transition-all duration-500 flex items-end p-4">
                   <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-light/0 group-hover:text-light/90 transition-all duration-500">
