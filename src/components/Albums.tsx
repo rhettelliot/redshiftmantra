@@ -149,8 +149,9 @@ export function Albums() {
     cards.forEach((card) => card.addEventListener('mouseleave', onLeave))
     rafId = requestAnimationFrame(tick)
 
+    const section = sectionRef.current
     return () => {
-      sectionRef.current?.removeEventListener('mousemove', onMove)
+      section?.removeEventListener('mousemove', onMove)
       cards.forEach((card) => card.removeEventListener('mouseleave', onLeave))
       cancelAnimationFrame(rafId)
     }
@@ -346,7 +347,7 @@ export function Albums() {
                 >
                   <div className="w-2 h-2" style={{ background: album.color }} />
                   <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted">
-                    Node {String(index + 1).padStart(2, '0')} // {album.catalog}
+                    Node {String(index + 1).padStart(2, '0')} {'//'} {album.catalog}
                   </span>
                 </div>
               </div>

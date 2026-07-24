@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
-import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import { Space_Grotesk, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
@@ -56,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrains.variable} ${playfair.variable}`}>
       <body className="bg-void text-light antialiased">
         <a
           href="#main"
