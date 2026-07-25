@@ -16,6 +16,7 @@ export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState<string | null>(null)
   const navRef = useRef<HTMLElement>(null)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -65,6 +66,16 @@ export function Navigation() {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  // Keep the closed menu out of the tab order / accessibility tree. The overlay
+  // stays mounted for its transition, so `inert` prevents keyboard and AT users
+  // from reaching links hidden behind opacity:0.
+  useEffect(() => {
+    const el = mobileMenuRef.current
+    if (!el) return
+    if (menuOpen) el.removeAttribute('inert')
+    else el.setAttribute('inert', '')
   }, [menuOpen])
 
   // Close mobile menu on Escape
@@ -169,6 +180,7 @@ export function Navigation() {
       {/* Mobile fullscreen menu */}
       <div
         id="mobile-menu"
+        ref={mobileMenuRef}
         className={`fixed inset-0 z-40 bg-void flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
