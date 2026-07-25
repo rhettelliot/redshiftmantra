@@ -23,7 +23,56 @@ const principles = [
 
 export function Philosophy() {
   const sectionRef = useRef<HTMLElement>(null)
+  const curtainRef = useRef<HTMLDivElement>(null)
 
+  // Curtain reveal for philosophy section
+  useEffect(() => {
+    const section = sectionRef.current
+    const curtain = curtainRef.current
+    if (!section || !curtain) return
+
+    let st: any = null
+    let ctx: { revert: () => void } | null = null
+
+    const setup = async () => {
+      const gsap = (await import('gsap')).default
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      gsap.registerPlugin(ScrollTrigger)
+
+      if (prefersReducedMotion()) {
+        gsap.set(curtain, { scaleX: 0 })
+        return
+      }
+
+      gsap.set(curtain, { transformOrigin: 'right center', scaleX: 1 })
+
+      ctx = gsap.context(() => {
+        st = ScrollTrigger.create({
+          trigger: section,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: 0.8,
+          onUpdate: (self) => {
+            gsap.to(curtain, {
+              scaleX: 1 - self.progress,
+              duration: 0.1,
+              ease: 'none',
+              overwrite: true,
+            })
+          },
+        })
+      }, section)
+    }
+
+    setup()
+
+    return () => {
+      st?.kill()
+      ctx?.revert()
+    }
+  }, [])
+
+  // Word reveal
   useEffect(() => {
     let io: IntersectionObserver | null = null
 
@@ -67,8 +116,25 @@ export function Philosophy() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="philosophy" className="py-20 md:py-28 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <section ref={sectionRef} id="philosophy" className="relative py-20 md:py-28 overflow-hidden"
+    >
+      {/* Curtain reveal overlay */}
+      <div
+        ref={curtainRef}
+        className="philosophy-curtain absolute inset-0 z-20 pointer-events-none"
+        style={{ transformOrigin: 'right center' }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center"
+        >
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-light/30"
+          >
+            Reveal
+          </span>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10"
+      >
         <div className="section-label mb-12">
           Philosophy /
         </div>
@@ -94,7 +160,15 @@ export function Philosophy() {
         </div>
       </div>
 
-      <div className="divider-glow max-w-6xl mx-auto mt-16" />
+      <div className="divider-glow max-w-6xl mx-auto mt-16 relative z-10" />
+
+      <style jsx>{`
+        .philosophy-curtain {
+          background: linear-gradient(90deg, var(--void) 0%, var(--surface) 50%, var(--void) 100%);
+          border-left: 1px solid rgba(253, 252, 220, 0.08);
+          border-right: 1px solid rgba(253, 252, 220, 0.08);
+        }
+      `}</style>
     </section>
   )
 }

@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { revealOnEnter } from '@/lib/reveal'
+import { useEffect, useRef, useState } from 'react'
 import { prefersReducedMotion } from '@/lib/motion'
 
 interface Track {
@@ -79,15 +78,83 @@ const albums: Album[] = [
 
 export function Albums() {
   const sectionRef = useRef<HTMLElement>(null)
+  const stackRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
 
+  // Sticky scroll stack for albums
   useEffect(() => {
-    let dispose = () => {}
-    const items = sectionRef.current?.querySelectorAll('.album-card') ?? []
-    revealOnEnter(items, { y: 60 }).then((d) => { dispose = d })
-    return () => dispose()
+    const section = sectionRef.current
+    const stack = stackRef.current
+    if (!section || !stack) return
+
+    const cards = Array.from(stack.querySelectorAll('.stack-card')) as HTMLElement[]
+    if (cards.length < 2) return
+
+    let ctx: { revert: () => void } | null = null
+    let st: any = null
+
+    const setup = async () => {
+      const gsap = (await import('gsap')).default
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      gsap.registerPlugin(ScrollTrigger)
+
+      if (prefersReducedMotion()) return
+
+      ctx = gsap.context(() => {
+        const first = cards[0]
+        const second = cards[1]
+
+        // Phoneme sticks; Deep Field Image starts below and slides over
+        gsap.set(second, { y: '120vh', zIndex: 30, position: 'relative' })
+
+        st = ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: '+=250%',
+          pin: true,
+          scrub: 1,
+          pinSpacing: true,
+          onUpdate: (self) => {
+            const p = self.progress
+            setActiveIndex(p > 0.55 ? 1 : 0)
+
+            // First card: stays, scales down slightly as second covers
+            gsap.to(first, {
+              scale: 1 - p * 0.05,
+              y: p * -30,
+              duration: 0.1,
+              ease: 'none',
+              overwrite: true,
+            })
+
+            // Second card: slides up and over
+            gsap.to(second, {
+              y: `${(1 - p) * 120}vh`,
+              scale: 1,
+              duration: 0.1,
+              ease: 'none',
+              overwrite: true,
+            })
+
+            // Background stack depth cue
+            cards.forEach((card, i) => {
+              const offset = i === 0 ? p * 4 : (1 - p) * 4
+              card.style.filter = `brightness(${1 - offset * 0.02})`
+            })
+          },
+        })
+      }, section)
+    }
+
+    setup()
+
+    return () => {
+      st?.kill()
+      ctx?.revert()
+    }
   }, [])
 
-  // Parallax tilt cards
+  // Parallax tilt cards (kept on cover frames)
   useEffect(() => {
     const cards = Array.from(sectionRef.current?.querySelectorAll('.tilt-card') ?? [])
     if (!cards.length) return
@@ -158,7 +225,7 @@ export function Albums() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="albums" className="relative py-20 md:py-32 overflow-hidden">
+    <section ref={sectionRef} id="albums" className="relative min-h-screen py-20 md:py-32 overflow-hidden">
       {/* 2. Wireframe grid tunnel */}
       <div className="wireframe-tunnel" aria-hidden="true" />
 
@@ -198,12 +265,34 @@ export function Albums() {
           Catalog /
         </div>
 
-        <div className="space-y-24 md:space-y-40">
+        <div className="hidden md:flex items-center gap-2 mb-8">
+          {albums.map((album, i) => (
+            <div key={album.id} className="flex items-center gap-2">
+              <div
+                className="w-2 h-2 transition-all duration-300"
+                style={{ background: activeIndex === i ? album.color : 'rgba(253,252,220,0.15)' }}
+              />
+              <span
+                className="font-mono text-[9px] tracking-[0.15em] uppercase transition-colors duration-300"
+                style={{ color: activeIndex === i ? album.color : 'var(--light-muted)' }}
+              >
+                {album.catalog}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Sticky stack container */}
+        <div ref={stackRef} className="relative stack-container">
           {albums.map((album, index) => (
             <div
               key={album.id}
-              className="album-card tilt-card relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 p-2 md:p-0"
-              style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+              className="stack-card album-card tilt-card relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 p-2 md:p-0 md:py-0"
+              style={{
+                transformStyle: 'preserve-3d',
+                willChange: 'transform',
+                zIndex: index === 0 ? 20 : 25,
+              }}
             >
               {/* 3. MASSIVE catalog number as background display art */}
               <div
@@ -219,15 +308,34 @@ export function Albums() {
 
               {/* Left: album identity + concentric frame tunnel cover */}
               <div className="md:col-span-5 relative z-10">
-                {/* 5. Concentric frame tunnel cover art */}
-                <div className="frame-tunnel aspect-square max-w-[340px] mb-8 scanlines">
+                {/* 5. Concentric frame tunnel cover art with glitch hover */}
+                <div className="frame-tunnel aspect-square max-w-[340px] mb-8 scanlines glitch-cover group"
+                  data-color={album.color}
+                >
                   <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 glitch-base"
                     style={{
                       background: `radial-gradient(circle at 35% 35%, ${album.color}25 0%, transparent 45%), linear-gradient(135deg, ${album.color}10 0%, transparent 60%)`,
                     }}
                     aria-hidden="true"
                   />
+
+                  {/* RGB glitch channels */}
+                  <div
+                    className="glitch-channel glitch-red absolute inset-0"
+                    style={{
+                      background: `radial-gradient(circle at 35% 35%, rgba(255,0,0,0.18) 0%, transparent 45%)`,
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="glitch-channel glitch-cyan absolute inset-0"
+                    style={{
+                      background: `radial-gradient(circle at 35% 35%, rgba(0,255,255,0.18) 0%, transparent 45%)`,
+                    }}
+                    aria-hidden="true"
+                  />
+
                   <div
                     className="absolute inset-[5%] border"
                     style={{ borderColor: `${album.color}40` }}
@@ -357,6 +465,69 @@ export function Albums() {
       </div>
 
       <div className="relative z-10 divider-glow max-w-5xl mx-auto mt-16" />
+
+      <style jsx>{`
+        .stack-container {
+          position: relative;
+          min-height: 70vh;
+        }
+        .stack-card {
+          background: var(--void);
+          will-change: transform, filter;
+        }
+        @media (min-width: 768px) {
+          .stack-card {
+            position: sticky;
+            top: 12vh;
+            height: 78vh;
+            overflow-y: auto;
+            padding-bottom: 2rem;
+          }
+        }
+        .glitch-cover {
+          position: relative;
+          overflow: hidden;
+        }
+        .glitch-channel {
+          opacity: 0;
+          mix-blend-mode: screen;
+          transition: opacity 0.1s;
+          pointer-events: none;
+        }
+        .glitch-cover:hover .glitch-red {
+          opacity: 0.85;
+          animation: glitchRed 0.18s steps(2) infinite;
+        }
+        .glitch-cover:hover .glitch-cyan {
+          opacity: 0.85;
+          animation: glitchCyan 0.22s steps(2) infinite;
+        }
+        .glitch-cover:hover .glitch-base {
+          animation: glitchBase 0.2s steps(2) infinite;
+        }
+        @keyframes glitchRed {
+          0% { transform: translate(0, 0); }
+          25% { transform: translate(6px, -3px); }
+          50% { transform: translate(-4px, 2px); }
+          75% { transform: translate(3px, 4px); }
+          100% { transform: translate(0, 0); }
+        }
+        @keyframes glitchCyan {
+          0% { transform: translate(0, 0); }
+          25% { transform: translate(-5px, 4px); }
+          50% { transform: translate(4px, -2px); }
+          75% { transform: translate(-3px, -4px); }
+          100% { transform: translate(0, 0); }
+        }
+        @keyframes glitchBase {
+          0% { clip-path: inset(0 0 0 0); }
+          20% { clip-path: inset(10% 0 60% 0); }
+          40% { clip-path: inset(40% 0 20% 0); }
+          60% { clip-path: inset(70% 0 5% 0); }
+          80% { clip-path: inset(20% 0 50% 0); }
+          100% { clip-path: inset(0 0 0 0); }
+        }
+      `}</style>
     </section>
   )
 }

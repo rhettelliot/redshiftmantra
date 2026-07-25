@@ -10,6 +10,8 @@ import { Footer } from '@/components/Footer'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { CustomCursor } from '@/components/CustomCursor'
 import { AmbientOrb } from '@/components/AmbientOrb'
+import { KineticMarquee } from '@/components/KineticMarquee'
+import { ChromaGrid } from '@/components/ChromaGrid'
 
 const SITE = 'https://redshiftmantra.vercel.app'
 const ARTIST_ID = `${SITE}/#artist`
@@ -91,7 +93,9 @@ export default function Home() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Philosophy />
+        <KineticMarquee />
         <Albums />
+        <ChromaGrid />
         <TrackVisualizer />
         <VisualOS />
         <Listen />
