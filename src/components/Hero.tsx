@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { prefersReducedMotion } from '@/lib/motion'
+import { ParallaxStarField } from './ParallaxStarField'
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -276,6 +277,7 @@ export function Hero() {
 
         {/* Subtle star field behind contours */}
         <div className="star-field" aria-hidden="true" />
+        <ParallaxStarField />
 
         {/* Left curtain panel */}
         <div

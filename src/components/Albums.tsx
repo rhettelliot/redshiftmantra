@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { prefersReducedMotion } from '@/lib/motion'
+import { MagneticAlbumCards } from './MagneticAlbumCards'
+import { GooeyAlbumTransition } from './GooeyAlbumTransition'
 
 interface Track {
   title: string
@@ -118,6 +120,11 @@ export function Albums() {
             const p = self.progress
             setActiveIndex(p > 0.55 ? 1 : 0)
 
+            // Drive gooey transition overlay
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new CustomEvent('gooey-transition', { detail: p }))
+            }
+
             // First card: stays, scales down slightly as second covers
             gsap.to(first, {
               scale: 1 - p * 0.05,
@@ -226,6 +233,9 @@ export function Albums() {
 
   return (
     <section ref={sectionRef} id="albums" className="relative min-h-screen py-20 md:py-32 overflow-hidden">
+      <MagneticAlbumCards />
+      <GooeyAlbumTransition />
+
       {/* 2. Wireframe grid tunnel */}
       <div className="wireframe-tunnel" aria-hidden="true" />
 
@@ -311,6 +321,7 @@ export function Albums() {
                 {/* 5. Concentric frame tunnel cover art with glitch hover */}
                 <div className="frame-tunnel aspect-square max-w-[340px] mb-8 scanlines glitch-cover group"
                   data-color={album.color}
+                  data-magnetic
                 >
                   <div
                     className="absolute inset-0 glitch-base"
@@ -425,6 +436,7 @@ export function Albums() {
                   {album.tracks.map((track, i) => (
                     <div
                       key={track.title}
+                      data-spotlight
                       className="group flex items-center py-3 border-b border-[var(--border)] hover:bg-surface-hover/30 transition-colors duration-300"
                     >
                       <span

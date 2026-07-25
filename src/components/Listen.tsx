@@ -83,6 +83,7 @@ export function Listen() {
           {releases.map((release, i) => (
             <a
               key={release.title}
+              data-spotlight
               href={release.hyperfollow}
               target="_blank"
               rel="noreferrer noopener"

@@ -1,27 +1,66 @@
 'use client'
 
-const TERMS = [
-  'WAVEFORM',
-  'OSCILLATOR',
-  'MODULAR',
-  'ANALOG',
-  'SUBTRACTIVE',
-  'FM',
-  'RED SHIFT',
-  'MANTRA',
+import { useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion } from '@/lib/motion'
+
+const TRACKS = [
+  'Piece of Ocean Water',
+  'Surface Tension',
+  'Xi',
+  'Hokku',
+  'Super Fluous',
+  'Byaiana',
+  'In Our Hands',
+  'Ashen Glow',
+  'Ajna',
+  'Obsidian',
+  'Rain',
+  'Kobayashi Maru',
+  'Nalu',
+  'Cloud Noise',
+  'Calm Between',
+  'Prominence',
 ]
 
 export function KineticMarquee() {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [skew, setSkew] = useState(0)
+  const [direction, setDirection] = useState(1)
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return
+
+    let raf = 0
+    let lastScroll = window.scrollY || window.pageYOffset
+    let velocity = 0
+
+    const tick = () => {
+      const y = window.scrollY || window.pageYOffset
+      const v = y - lastScroll
+      velocity += (v - velocity) * 0.12
+      const targetSkew = Math.max(-18, Math.min(18, velocity * 0.35))
+      const targetDir = velocity > 0.5 ? 1 : velocity < -0.5 ? -1 : direction
+      setSkew(targetSkew)
+      setDirection(targetDir)
+      lastScroll = y
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [direction])
+
   const row = (
-    <div className="marquee-row flex items-center gap-8 shrink-0">
-      {TERMS.map((term, i) => (
-        <div key={i} className="flex items-center gap-8"
+    <div className="marquee-row flex items-center gap-6 md:gap-8 shrink-0"
+    >
+      {TRACKS.map((track, i) => (
+        <div key={i} className="flex items-center gap-6 md:gap-8"
         >
-          <span className="marquee-term font-mono text-[clamp(2rem,6vw,5rem)] font-[900] uppercase tracking-[0.04em]"
+          <span className="marquee-term font-display text-[clamp(1.75rem,5vw,4rem)] font-[900] uppercase tracking-[0.02em] whitespace-nowrap"
           >
-            {term}
+            {track}
           </span>
-          <span className="marquee-dot w-3 h-3 bg-accent" />
+          <span className="marquee-dot w-2 h-2 md:w-3 md:h-3 shrink-0" style={{ background: direction > 0 ? 'var(--accent)' : 'var(--accent-blue)' }} />
         </div>
       ))}
     </div>
@@ -30,7 +69,10 @@ export function KineticMarquee() {
   return (
     <section className="relative py-12 md:py-20 overflow-hidden border-y border-[var(--border)] bg-void"
     >
-      <div className="marquee-track flex items-center"
+      <div
+        ref={trackRef}
+        className="marquee-track flex items-center"
+        style={{ transform: `skewX(${skew}deg)` }}
       >
         {row}
         {row}
@@ -40,7 +82,8 @@ export function KineticMarquee() {
       <style jsx>{`
         .marquee-track {
           width: max-content;
-          animation: marqueeScroll 24s linear infinite;
+          animation: marqueeScroll 36s linear infinite;
+          will-change: transform;
         }
         .marquee-term {
           color: transparent;
@@ -53,8 +96,8 @@ export function KineticMarquee() {
           text-shadow: 0 0 24px rgba(255, 77, 0, 0.45);
         }
         @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
+          0% { transform: translateX(0) skewX(${skew}deg); }
+          100% { transform: translateX(-33.333%) skewX(${skew}deg); }
         }
         @media (prefers-reduced-motion: reduce) {
           .marquee-track {

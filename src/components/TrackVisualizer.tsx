@@ -173,6 +173,7 @@ export function TrackVisualizer() {
           {trackData.filter(t => t.freq > 0).map((track) => (
             <div
               key={track.name}
+              data-spotlight
               className="track-row group flex items-center py-2 border-b border-[var(--border)] hover:bg-surface-hover/20 transition-colors duration-300"
             >
               {/* Frequency indicator */}

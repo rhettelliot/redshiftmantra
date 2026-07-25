@@ -10,8 +10,12 @@ import { Footer } from '@/components/Footer'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { CustomCursor } from '@/components/CustomCursor'
 import { AmbientOrb } from '@/components/AmbientOrb'
+import { ParallaxStarField } from '@/components/ParallaxStarField'
+import { ScrollStrobe } from '@/components/ScrollStrobe'
 import { KineticMarquee } from '@/components/KineticMarquee'
 import { ChromaGrid } from '@/components/ChromaGrid'
+import { SpotlightBorder } from '@/components/SpotlightBorder'
+import { CurtainReveal } from '@/components/CurtainReveal'
 
 const SITE = 'https://redshiftmantra.vercel.app'
 const ARTIST_ID = `${SITE}/#artist`
@@ -88,17 +92,32 @@ export default function Home() {
       />
       <CustomCursor />
       <AmbientOrb />
+      <ParallaxStarField />
+      <ScrollStrobe />
       <Gatekeeper />
       <Navigation />
       <main id="main" tabIndex={-1}>
-        <Hero />
-        <Philosophy />
+        <CurtainReveal>
+          <Hero />
+        </CurtainReveal>
+        <CurtainReveal>
+          <Philosophy />
+        </CurtainReveal>
         <KineticMarquee />
         <Albums />
-        <ChromaGrid />
-        <TrackVisualizer />
-        <VisualOS />
-        <Listen />
+        <CurtainReveal>
+          <ChromaGrid />
+        </CurtainReveal>
+        <SpotlightBorder />
+        <CurtainReveal>
+          <TrackVisualizer />
+        </CurtainReveal>
+        <CurtainReveal>
+          <VisualOS />
+        </CurtainReveal>
+        <CurtainReveal>
+          <Listen />
+        </CurtainReveal>
       </main>
       <Footer />
     </SmoothScroll>
