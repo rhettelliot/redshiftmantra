@@ -88,7 +88,6 @@ export function Listen() {
               target="_blank"
               rel="noreferrer noopener"
               className="listen-item group flex items-center justify-between py-6 border-b border-[var(--border)] hover:border-accent/50 transition-all duration-300"
-              data-cursor
             >
               <div className="flex items-center gap-4">
                 <span className="font-mono text-[10px] text-light-muted" style={{ fontFeatureSettings: '"tnum"' }}>
@@ -123,7 +122,6 @@ export function Listen() {
               rel="noreferrer noopener"
               className="platform-badge group flex items-center gap-2 px-4 py-2 border border-[var(--border)] hover:border-accent/50 hover:bg-surface-hover/30 transition-all duration-300"
               style={{ borderRadius: 0 }}
-              data-cursor
             >
               <span className="text-[12px] group-hover:text-accent transition-colors">{p.icon}</span>
               <span className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted group-hover:text-light transition-colors">

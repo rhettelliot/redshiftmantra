@@ -80,7 +80,6 @@
   /* Z-scale */
   --z-noise: 9000;
   --z-gate: 9999;
-  --z-cursor: 10000;
 }
 
 /* ─── Reset ─── */
@@ -174,11 +173,6 @@ h1, h2, h3 {
 button:focus-visible,
 a:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--signal);
-  outline-offset: 4px;
-}
-
-[data-cursor]:focus-visible {
   outline: 2px solid var(--signal);
   outline-offset: 4px;
 }

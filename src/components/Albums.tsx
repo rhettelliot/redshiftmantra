@@ -405,7 +405,7 @@ export function Albums() {
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'transparent'
                     }}
-                    data-cursor
+
                     aria-label={`Listen to ${album.title} — all platforms`}
                   >
                     Listen
@@ -415,7 +415,6 @@ export function Albums() {
                     target="_blank"
                     rel="noreferrer noopener"
                     className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors"
-                    data-cursor
                     aria-label={`${album.title} on Spotify`}
                   >
                     Spotify →

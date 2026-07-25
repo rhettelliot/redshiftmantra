@@ -105,7 +105,6 @@ export function Navigation() {
             href="#"
             onClick={(e) => { e.preventDefault(); scrollToTarget(0) }}
             className="font-mono text-[11px] tracking-[0.2em] uppercase text-light hover:text-accent transition-colors"
-            data-cursor
             aria-label="Red Shift Mantra home"
           >
             <span className="text-accent">R</span>SM
@@ -124,7 +123,6 @@ export function Navigation() {
                   className={`font-mono text-[10px] tracking-[0.15em] uppercase transition-colors flex items-center gap-2 ${
                     isActive ? 'text-accent' : 'text-light-muted hover:text-accent'
                   }`}
-                  data-cursor
                 >
                   <span className={`text-[8px] ${isActive ? 'text-accent' : 'text-light-muted'}`}>{s.label}</span>
                   {s.title}
@@ -149,7 +147,6 @@ export function Navigation() {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
-              data-cursor
             >
               <div
                 className="h-[1px] bg-light transition-all duration-300 origin-right"
@@ -200,7 +197,6 @@ export function Navigation() {
                 setTimeout(() => scrollToTarget(s.href), 50)
               }}
               className="group text-center"
-              data-cursor
               style={{
                 transform: menuOpen ? 'translateY(0)' : `translateY(${20 + i * 10}px)`,
                 opacity: menuOpen ? 1 : 0,

@@ -8,7 +8,6 @@ import { VisualOS } from '@/components/VisualOS'
 import { Listen } from '@/components/Listen'
 import { Footer } from '@/components/Footer'
 import { SmoothScroll } from '@/components/SmoothScroll'
-import { CustomCursor } from '@/components/CustomCursor'
 import { AmbientOrb } from '@/components/AmbientOrb'
 import { ParallaxStarField } from '@/components/ParallaxStarField'
 import { ScrollStrobe } from '@/components/ScrollStrobe'
@@ -90,7 +89,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <CustomCursor />
       <AmbientOrb />
       <ParallaxStarField />
       <ScrollStrobe />

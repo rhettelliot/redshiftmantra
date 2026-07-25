@@ -23,11 +23,11 @@ export function Footer() {
               </div>
               <div className="space-y-1">
                 <a href="https://distrokid.com/hyperfollow/redshiftmantra/phoneme-2" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors" data-cursor>
+                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
                   Phoneme
                 </a>
                 <a href="https://distrokid.com/hyperfollow/redshiftmantra/deep-field-image-2" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors" data-cursor>
+                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
                   Deep Field Image
                 </a>
               </div>
@@ -38,11 +38,11 @@ export function Footer() {
               </div>
               <div className="space-y-1">
                 <a href="https://manteisrecordings.com" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors" data-cursor>
+                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
                   Manteis Recordings
                 </a>
                 <a href="https://soundcloud.com/rhettelliot" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors" data-cursor>
+                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
                   SoundCloud
                 </a>
               </div>

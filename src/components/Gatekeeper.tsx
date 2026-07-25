@@ -183,7 +183,6 @@ export function Gatekeeper() {
           }}
           className="gate-button group relative font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted hover:text-accent transition-colors duration-500 px-12 py-3"
           style={{ opacity: 0 }}
-          data-cursor
           aria-label="Enter the Red Shift Mantra experience"
           autoFocus
         >
