@@ -1,20 +1,10 @@
-import { Gatekeeper } from '@/components/Gatekeeper'
 import { Navigation } from '@/components/Navigation'
 import { Hero } from '@/components/Hero'
 import { Philosophy } from '@/components/Philosophy'
 import { Albums } from '@/components/Albums'
-import { TrackVisualizer } from '@/components/TrackVisualizer'
-import { VisualOS } from '@/components/VisualOS'
 import { Listen } from '@/components/Listen'
 import { Footer } from '@/components/Footer'
 import { SmoothScroll } from '@/components/SmoothScroll'
-import { AmbientOrb } from '@/components/AmbientOrb'
-import { ParallaxStarField } from '@/components/ParallaxStarField'
-import { ScrollStrobe } from '@/components/ScrollStrobe'
-import { KineticMarquee } from '@/components/KineticMarquee'
-import { ChromaGrid } from '@/components/ChromaGrid'
-import { SpotlightBorder } from '@/components/SpotlightBorder'
-import { CurtainReveal } from '@/components/CurtainReveal'
 
 const SITE = 'https://redshiftmantra.vercel.app'
 const ARTIST_ID = `${SITE}/#artist`
@@ -89,33 +79,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AmbientOrb />
-      <ParallaxStarField />
-      <ScrollStrobe />
-      <Gatekeeper />
       <Navigation />
       <main id="main" tabIndex={-1}>
-        <CurtainReveal>
-          <Hero />
-        </CurtainReveal>
-        <CurtainReveal>
-          <Philosophy />
-        </CurtainReveal>
-        <KineticMarquee />
+        <Hero />
+        <Philosophy />
         <Albums />
-        <CurtainReveal>
-          <ChromaGrid />
-        </CurtainReveal>
-        <SpotlightBorder />
-        <CurtainReveal>
-          <TrackVisualizer />
-        </CurtainReveal>
-        <CurtainReveal>
-          <VisualOS />
-        </CurtainReveal>
-        <CurtainReveal>
-          <Listen />
-        </CurtainReveal>
+        <Listen />
       </main>
       <Footer />
     </SmoothScroll>

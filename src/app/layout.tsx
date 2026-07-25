@@ -66,9 +66,7 @@ export default function RootLayout({
         </a>
         <noscript>
           <style>{`
-            [aria-label="Welcome gate"] { display: none !important; }
-            nav, .hero-badge, .hero-title, .hero-tagline, .hero-scroll,
-            .gate-label, .gate-title, .gate-subtitle, .gate-button {
+            nav, .hero-badge, .hero-title, .hero-tagline, .hero-scroll {
               opacity: 1 !important;
             }
           `}</style>

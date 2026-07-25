@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
 
-// Per-platform search links
 const platforms = [
   { name: 'Spotify', url: 'https://open.spotify.com/search/Red%20Shift%20Mantra', icon: '◈' },
   { name: 'Apple Music', url: 'https://music.apple.com/us/search?term=Red+Shift+Mantra', icon: '⬡' },
@@ -62,28 +61,10 @@ export function Listen() {
           All platforms · Lossless where available
         </p>
 
-        {/* Catalog numbers as ambient display art */}
-        <div className="hidden md:flex items-center justify-between gap-4 mb-12">
-          {releases.map((release) => (
-            <div
-              key={release.catalog}
-              className="catalog-number"
-              style={{
-                color: `${release.color}08`,
-                WebkitTextStroke: `1px ${release.color}24`,
-              }}
-            >
-              {release.catalog}
-            </div>
-          ))}
-        </div>
-
-        {/* Albums with enriched data */}
         <div className="space-y-4 mb-16">
           {releases.map((release, i) => (
             <a
               key={release.title}
-              data-spotlight
               href={release.hyperfollow}
               target="_blank"
               rel="noreferrer noopener"
@@ -112,7 +93,6 @@ export function Listen() {
           ))}
         </div>
 
-        {/* Platform links */}
         <div className="flex flex-wrap gap-3">
           {platforms.map((p) => (
             <a
