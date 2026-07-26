@@ -35,7 +35,7 @@ const albums: Album[] = [
     theme: 'Vibration → Life → Consciousness',
     narrative: 'From a single drop of primordial water to the opening of the third eye. Nine movements mapping the geometry of awareness.',
     year: '2025',
-    color: '#007AFF',
+    color: '#FF5500',
     tracks: [
       { title: 'Piece of Ocean Water', bpm: 92, duration: '4:18' },
       { title: 'Surface Tension', bpm: 88, duration: '4:42' },

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        void: '#000000',
+        void: '#0D0F12',
         'void-raised': '#0C0C0C',
         'void-elevated': '#141414',
         'void-float': '#1C1C1C',
@@ -13,7 +13,7 @@ module.exports = {
         'light-muted': '#A8A48E',
         'light-faint': '#6A665A',
         accent: '#FF4D00',
-        'accent-blue': '#007AFF',
+        'accent-blue': '#FF5500',
         signal: '#FF4D00',
         surface: '#0C0C0C',
         'surface-elevated': '#141414',

@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <main
       className="min-h-[100dvh] flex flex-col items-center justify-center text-center px-6"
-      style={{ backgroundColor: '#000000' }}
+      style={{ backgroundColor: '#0D0F12' }}
     >
       <p className="font-mono text-[10px] tracking-[0.3em] uppercase" style={{ color: '#FF4D00' }}>
         404 — Beyond the deep field

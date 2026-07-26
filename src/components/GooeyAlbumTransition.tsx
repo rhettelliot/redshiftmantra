@@ -77,7 +77,7 @@ export function GooeyAlbumTransition() {
             <feComposite in="SourceGraphic" in2="goo" operator="atop" />
           </filter>
           <linearGradient id="gooGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#007AFF" />
+            <stop offset="0%" stopColor="#FF5500" />
             <stop offset="50%" stopColor="#FDFCDC" />
             <stop offset="100%" stopColor="#FF4D00" />
           </linearGradient>

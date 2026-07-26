@@ -18,7 +18,7 @@ const releases = [
     subtitle: 'The Geometry of Sound',
     year: '2025',
     trackCount: 9,
-    color: '#007AFF',
+    color: '#FF5500',
     hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/phoneme-2',
     spotify: 'https://open.spotify.com/album/3jAWlv6FPYUhiDJ0X0KEhH',
   },

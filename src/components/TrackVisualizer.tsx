@@ -5,13 +5,13 @@ import { revealOnEnter } from '@/lib/reveal'
 
 // Track data with waveform-inspired visual parameters
 const trackData = [
-  { name: 'Piece of Ocean Water', freq: 0.8, amp: 0.3, color: '#007AFF', bpm: 92, duration: '4:18' },
-  { name: 'Surface Tension', freq: 1.2, amp: 0.5, color: '#007AFF', bpm: 88, duration: '4:42' },
-  { name: 'Xi', freq: 0.6, amp: 0.7, color: '#007AFF', bpm: 104, duration: '3:55' },
-  { name: 'Hokku', freq: 1.5, amp: 0.4, color: '#007AFF', bpm: 96, duration: '4:24' },
-  { name: 'Super Fluous', freq: 2.0, amp: 0.6, color: '#007AFF', bpm: 112, duration: '5:01' },
-  { name: 'Byaiana', freq: 0.9, amp: 0.8, color: '#007AFF', bpm: 84, duration: '5:33' },
-  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#007AFF', bpm: 90, duration: '4:47' },
+  { name: 'Piece of Ocean Water', freq: 0.8, amp: 0.3, color: '#FF5500', bpm: 92, duration: '4:18' },
+  { name: 'Surface Tension', freq: 1.2, amp: 0.5, color: '#FF5500', bpm: 88, duration: '4:42' },
+  { name: 'Xi', freq: 0.6, amp: 0.7, color: '#FF5500', bpm: 104, duration: '3:55' },
+  { name: 'Hokku', freq: 1.5, amp: 0.4, color: '#FF5500', bpm: 96, duration: '4:24' },
+  { name: 'Super Fluous', freq: 2.0, amp: 0.6, color: '#FF5500', bpm: 112, duration: '5:01' },
+  { name: 'Byaiana', freq: 0.9, amp: 0.8, color: '#FF5500', bpm: 84, duration: '5:33' },
+  { name: 'In Our Hands', freq: 1.1, amp: 0.5, color: '#FF5500', bpm: 90, duration: '4:47' },
   { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF4D00', bpm: 76, duration: '5:12' },
   { name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF4D00', bpm: 72, duration: '6:08' },
   { name: '───', freq: 0, amp: 0, color: '#333', bpm: 0, duration: '' },
