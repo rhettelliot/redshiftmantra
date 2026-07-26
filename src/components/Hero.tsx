@@ -74,16 +74,16 @@ export function Hero() {
 
       <section
         ref={heroRef}
-        className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-16 md:pt-0"
         style={{ background: 'var(--void)' }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
           <div ref={titleRef} className="max-w-3xl">
             <div className="hero-badge section-label mb-6" style={{ opacity: 0 }}>
               <span className="badge badge-signal">Electronic / Synthwave</span>
             </div>
 
-            <h1 className="hero-title text-[clamp(3rem,10vw,8rem)] leading-[0.9] mb-4" style={{ opacity: 0 }}>
+            <h1 className="hero-title text-[clamp(3rem,13vw,8rem)] leading-[0.9] mb-4" style={{ opacity: 0 }}>
               <span className="block hollow-text">Red Shift</span>
               <span className="block text-accent">Mantra</span>
             </h1>

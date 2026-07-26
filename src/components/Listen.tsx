@@ -49,12 +49,12 @@ export function Listen() {
   return (
     <section ref={sectionRef} id="listen" className="py-20 md:py-28 relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-6 md:px-12">
+      <div className="max-w-5xl mx-auto px-6 md:px-10">
         <div className="section-label mb-8">
           Listen /
         </div>
 
-        <h2 className="listen-heading text-[clamp(2.5rem,6vw,5rem)] font-display font-[900] leading-[0.95] mb-4">
+        <h2 className="listen-heading text-[clamp(2.5rem,8vw,5rem)] font-display font-[900] leading-[0.95] mb-4">
           <span className="hollow-text">Stream</span>
         </h2>
         <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-light-muted mb-16">
@@ -68,14 +68,14 @@ export function Listen() {
               href={release.hyperfollow}
               target="_blank"
               rel="noreferrer noopener"
-              className="listen-item group flex items-center justify-between py-6 border-b border-[var(--border)] hover:border-accent/50 transition-all duration-300"
+              className="listen-item group flex flex-col sm:flex-row sm:items-center justify-between py-6 border-b border-[var(--border)] hover:border-accent/50 transition-all duration-300"
             >
               <div className="flex items-center gap-4">
                 <span className="font-mono text-[10px] text-light-muted" style={{ fontFeatureSettings: '"tnum"' }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <span className="block text-[18px] font-display font-[900] group-hover:text-accent transition-colors">
+                  <span className="block text-lg md:text-xl font-display font-[900] group-hover:text-accent transition-colors">
                     {release.title}
                   </span>
                   <span className="block font-mono text-[9px] tracking-[0.1em] uppercase mt-1" style={{ color: release.color }}>
@@ -83,7 +83,7 @@ export function Listen() {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mt-3 sm:mt-0">
                 <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-light-muted group-hover:text-accent transition-colors hidden sm:inline">
                   All platforms
                 </span>
@@ -100,7 +100,7 @@ export function Listen() {
               href={p.url}
               target="_blank"
               rel="noreferrer noopener"
-              className="platform-badge group flex items-center gap-2 px-4 py-2 border border-[var(--border)] hover:border-accent/50 hover:bg-surface-hover/30 transition-all duration-300"
+              className="platform-badge group flex items-center gap-2 px-4 py-2 border border-[var(--border)] hover:border-accent/50 hover:bg-surface-hover/30 transition-all duration-300 min-h-[44px]"
               style={{ borderRadius: 0 }}
             >
               <span className="text-[12px] group-hover:text-accent transition-colors">{p.icon}</span>

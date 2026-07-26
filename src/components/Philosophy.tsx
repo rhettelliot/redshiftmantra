@@ -70,7 +70,7 @@ export function Philosophy() {
   return (
     <section ref={sectionRef} id="philosophy" className="relative py-20 md:py-28 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10"
+      <div className="max-w-6xl mx-auto px-6 md:px-10 relative z-10"
       >
         <div className="section-label mb-12">
           Philosophy /
@@ -79,15 +79,15 @@ export function Philosophy() {
         <div className="space-y-16 md:space-y-24">
           {principles.map((p) => (
             <div key={p.label} className="philosophy-item grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
-              <div className="md:col-span-5 reveal-inner">
+              <div className="col-span-12 md:col-span-5 reveal-inner">
                 <div className="font-mono text-[10px] tracking-[0.15em] uppercase text-accent mb-4">
                   {p.label}
                 </div>
-                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-display font-[900] leading-[1.05] text-light">
+                <h2 className="text-[clamp(2rem,7vw,3.5rem)] font-display font-[900] leading-[1.05] text-light">
                   {p.title}
                 </h2>
               </div>
-              <div className="md:col-span-7 text-[15px] leading-[1.8] text-light-dim md:pt-3 reveal-inner">
+              <div className="col-span-12 md:col-span-7 text-base md:text-lg leading-[1.8] text-light-dim md:pt-3 reveal-inner">
                 {p.text}
               </div>
             </div>

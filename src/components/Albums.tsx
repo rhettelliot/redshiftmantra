@@ -80,7 +80,7 @@ export function Albums() {
 
   return (
     <section ref={sectionRef} id="albums" className="relative py-20 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="section-label mb-16">
           Catalog /
         </div>
@@ -91,7 +91,7 @@ export function Albums() {
               key={album.id}
               className="relative grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12"
             >
-              <div className="absolute -top-6 md:-top-10 left-0 md:left-0 catalog-number select-none pointer-events-none z-0"
+              <div className="absolute -top-6 md:-top-10 left-0 md:left-0 catalog-number select-none pointer-events-none z-0 hidden md:block"
                 style={{
                   WebkitTextStroke: `1px ${album.color}24`,
                   color: `${album.color}08`,
@@ -101,7 +101,7 @@ export function Albums() {
                 {album.catalog}
               </div>
 
-              <div className="md:col-span-5 relative z-10">
+              <div className="col-span-12 md:col-span-5 relative z-10">
                 <div className="aspect-square max-w-[300px] mb-8 p-6 border flex flex-col justify-between"
                   style={{ borderColor: `${album.color}30` }}
                 >
@@ -122,14 +122,14 @@ export function Albums() {
                 <div className="font-mono text-[10px] tracking-[0.15em] uppercase mb-3" style={{ color: album.color }}>
                   {album.catalog} · {album.trackCount} tracks · {album.runtime}
                 </div>
-                <h2 className="text-[clamp(2.25rem,4.5vw,3.75rem)] font-display font-[900] leading-[0.95]">
+                <h2 className="text-[clamp(2.25rem,8vw,3.75rem)] font-display font-[900] leading-[0.95]">
                   {album.title}
                 </h2>
                 <p className="font-mono text-[11px] tracking-[0.15em] uppercase text-light-muted mt-2">
                   {album.subtitle}
                 </p>
 
-                <p className="text-[15px] leading-[1.8] text-light-dim mt-6">
+                <p className="text-base md:text-lg leading-[1.8] text-light-dim mt-6">
                   {album.narrative}
                 </p>
 
@@ -137,12 +137,12 @@ export function Albums() {
                   arc → {album.theme}
                 </div>
 
-                <div className="flex items-center gap-4 mt-8">
+                <div className="flex flex-wrap items-center gap-4 mt-8">
                   <a
                     href={album.hyperfollow}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border hover:text-void transition-all duration-300"
+                    className="font-mono text-[11px] tracking-[0.15em] uppercase px-6 py-3 border hover:text-void transition-all duration-300 min-h-[44px] flex items-center"
                     style={{ borderRadius: 0, borderColor: album.color, color: album.color, background: 'transparent' }}
                     onMouseEnter={(e) => { e.currentTarget.style.background = album.color }}
                     onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
@@ -154,7 +154,7 @@ export function Albums() {
                     href={album.spotify}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors"
+                    className="font-mono text-[10px] tracking-[0.1em] uppercase text-light-muted hover:text-accent transition-colors min-h-[44px] flex items-center"
                     aria-label={`${album.title} on Spotify`}
                   >
                     Spotify →
@@ -162,7 +162,7 @@ export function Albums() {
                 </div>
               </div>
 
-              <div className="md:col-span-7 relative z-10">
+              <div className="col-span-12 md:col-span-7 relative z-10">
                 <div className="mb-4 meta-strip">
                   <span className="meta-pill">{album.trackCount} tracks</span>
                   <span className="meta-pill">{album.runtime}</span>
@@ -181,7 +181,7 @@ export function Albums() {
                       >
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className="flex-1 text-[14px] text-light-dim group-hover:text-light transition-colors">
+                      <span className="flex-1 text-base md:text-lg text-light-dim group-hover:text-light transition-colors">
                         {track.title}
                       </span>
 

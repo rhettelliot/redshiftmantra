@@ -3,7 +3,7 @@
 export function Footer() {
   return (
     <footer className="py-16 border-t border-[var(--border)] relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* Brand */}
           <div>
@@ -16,7 +16,7 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex gap-12">
+          <div className="grid grid-cols-2 md:flex gap-x-8 gap-y-6 md:gap-12">
             <div>
               <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted mb-3">
                 Albums
@@ -32,17 +32,17 @@ export function Footer() {
                 </a>
               </div>
             </div>
-            <div>
-              <div className="font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted mb-3">
+            <div className="flex flex-col items-start md:items-end gap-2">
+              <span className="font-mono text-[9px] tracking-[0.15em] uppercase text-light-muted mb-3">
                 Label
-              </div>
-              <div className="space-y-1">
+              </span>
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-x-6 gap-y-1">
                 <a href="https://manteisrecordings.com" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
+                  className="block text-base text-light-dim hover:text-accent transition-colors">
                   Manteis Recordings
                 </a>
                 <a href="https://soundcloud.com/rhettelliot" target="_blank" rel="noreferrer noopener"
-                  className="block text-[13px] text-light-dim hover:text-accent transition-colors">
+                  className="block text-base text-light-dim hover:text-accent transition-colors">
                   SoundCloud
                 </a>
               </div>

@@ -98,7 +98,7 @@ export function Navigation() {
         style={{ opacity: 0 }}
         aria-label="Primary navigation"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between"
+        <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between"
         >
           {/* Logo */}
           <a
@@ -142,7 +142,7 @@ export function Navigation() {
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden flex flex-col items-end gap-[5px] p-2"
+              className="md:hidden flex flex-col items-end gap-[5px] p-2 min-h-[44px] min-w-[44px] justify-center"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}

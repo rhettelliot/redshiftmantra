@@ -80,7 +80,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navigation />
-      <main id="main" tabIndex={-1}>
+      <main id="main" className="overflow-x-hidden" tabIndex={-1}>
         <Hero />
         <Philosophy />
         <Albums />
