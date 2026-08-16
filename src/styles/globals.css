@@ -27,9 +27,25 @@
   --color-solar-amber: #B33600;
 
   /* Fonts */
-  --font-display: "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: var(--font-body), "Inter", system-ui, sans-serif;
+  --font-body: var(--font-body), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
+
+  /* Legacy aliases so existing components keep working during migration */
+  --void: var(--color-canvas);
+  --void-raised: var(--color-surface);
+  --void-elevated: var(--color-surface-hi);
+  --void-float: #1C1C1C;
+  --accent: var(--color-signal);
+  --accent-dim: var(--color-signal-dim);
+  --accent-blue: var(--color-signal);
+  --signal: var(--color-signal);
+  --light: var(--color-ink);
+  --light-dim: var(--color-ink-2);
+  --light-muted: var(--color-ink-3);
+  --cream: var(--color-ink);
+  --cream-dim: var(--color-ink-2);
+  --cream-muted: var(--color-ink-3);
 }
 
 @layer base {
@@ -55,6 +71,7 @@
   z-index: 9999;
   opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
 }
 
 /* ─── VISIBLE GRID LINES ─── */
@@ -76,19 +93,6 @@
     transparent 70%
   );
   filter: blur(40px);
-}
-
-.cool-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(159, 168, 218, 0.10) 0%,
-    rgba(13, 59, 62, 0.06) 40%,
-    transparent 70%
-  );
-  filter: blur(50px);
 }
 
 /* ─── BENTO CARD ─── */
@@ -194,29 +198,79 @@
 .clip-slit {
   clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%, 0% 30%, 100% 30%, 100% 50%, 0% 50%, 0% 60%, 100% 60%, 100% 80%, 0% 80%, 0% 90%, 100% 90%, 100% 100%, 0% 100%);
 }
-/* ─── LEGACY ALIASES ─── */
-:root {
-  --void: var(--color-canvas);
-  --void-raised: var(--color-surface);
-  --void-elevated: #1A1E24;
-  --void-float: #1C1C1C;
-  --signal-pink: var(--color-signal);
-  --signal-pink-dim: var(--color-signal-dim);
-  --signal-pink-glow: rgba(255, 85, 0, 0.25);
-  --signal-pink-border: rgba(255, 85, 0, 0.35);
-  --font-display: var(--font-body);
-}
+
+/* ─── REDSHIFTMANTRA LEGACY UTILITY CLASSES ─── */
 .bg-void { background-color: var(--color-canvas) !important; }
 .bg-void-raised { background-color: var(--color-surface) !important; }
-.bg-void-elevated { background-color: #1A1E24 !important; }
+.bg-void-elevated { background-color: var(--color-surface-hi) !important; }
 .bg-void-float { background-color: #1C1C1C !important; }
 .text-light { color: var(--color-ink) !important; }
-.text-light-muted { color: var(--color-ink-2) !important; }
-.text-light-dim { color: var(--color-ink-3) !important; }
-.text-signal-pink { color: var(--color-signal) !important; }
-.bg-signal-pink { background-color: var(--color-signal) !important; }
-.border-signal-pink { border-color: var(--color-signal) !important; }
+.text-light-dim { color: var(--color-ink-2) !important; }
+.text-light-muted { color: var(--color-ink-3) !important; }
+.text-accent { color: var(--color-signal) !important; }
+.bg-accent { background-color: var(--color-signal) !important; }
 .border-edge-faint { border-color: var(--color-border) !important; }
 .border-edge { border-color: var(--color-border-hi) !important; }
 .font-display { font-family: var(--font-body) !important; }
 
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border-hi);
+}
+.badge-signal {
+  color: var(--color-signal);
+  border-color: var(--color-signal);
+}
+
+.hollow-text {
+  -webkit-text-stroke: 1px var(--color-ink);
+  color: transparent;
+}
+
+.scroll-indicator-line {
+  background: var(--color-signal);
+}
+
+.surface-hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.meta-pill {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  color: var(--color-ink-2);
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-signal), transparent);
+  opacity: 0.35;
+}

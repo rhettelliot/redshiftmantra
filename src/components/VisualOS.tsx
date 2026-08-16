@@ -8,25 +8,25 @@ const films = [
     album: 'Deep Field Image',
     track: 'Obsidian',
     visual: 'Void → Liquid → Crack',
-    palette: ['#0D0F12', '#1a0a00', '#FF4D00'],
+    palette: ['#0D0F12', '#1a0a00', '#FF5500'],
   },
   {
     album: 'Deep Field Image',
     track: 'Prominence',
     visual: 'Cosmic fire → Rebirth',
-    palette: ['#0D0000', '#3D0C00', '#FF4D00'],
+    palette: ['#0D0000', '#3D0C00', '#FF5500'],
   },
   {
     album: 'Phoneme',
     track: 'Ajna',
     visual: 'Third eye → Vision',
-    palette: ['#000A1A', '#003366', '#FF5500'],
+    palette: ['#0D0F12', '#2D1800', '#FF5500'],
   },
   {
     album: 'Phoneme',
     track: 'Surface Tension',
     visual: 'Boundary → Membrane',
-    palette: ['#00101A', '#003D66', '#FF5500'],
+    palette: ['#0D0F12', '#2D1800', '#FF5500'],
   },
 ]
 

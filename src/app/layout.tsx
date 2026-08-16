@@ -51,8 +51,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
-      <body className="bg-[#0D0F12] text-[#9EA4B0] antialiased">
-        <div className="grain" />
+      <body className="bg-canvas text-ink-2 antialiased">
+        <div className="grain" aria-hidden="true" />
         <a
           href="#main"
           className="skip-link"
@@ -66,7 +66,6 @@ export default function RootLayout({
             }
           `}</style>
         </noscript>
-        <div className="noise-overlay" aria-hidden="true" />
         {children}
       </body>
     </html>

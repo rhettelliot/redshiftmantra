@@ -60,7 +60,7 @@ const albums: Album[] = [
     theme: 'Void → Organic → Machine → Ether → Energy',
     narrative: 'The universe ends in fire and is reborn in silence. Seven movements tracing matter through its cosmic cycle.',
     year: '2025',
-    color: '#FF4D00',
+    color: '#FF5500',
     tracks: [
       { title: 'Obsidian', bpm: 80, duration: '6:24' },
       { title: 'Rain', bpm: 95, duration: '5:17' },

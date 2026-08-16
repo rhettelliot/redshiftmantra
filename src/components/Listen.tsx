@@ -28,7 +28,7 @@ const releases = [
     subtitle: 'The Transmutation of Matter',
     year: '2025',
     trackCount: 7,
-    color: '#FF4D00',
+    color: '#FF5500',
     hyperfollow: 'https://distrokid.com/hyperfollow/redshiftmantra/deep-field-image-2',
     spotify: 'https://open.spotify.com/album/1nJCr1MCkLBA1ZqD7j7GDF',
   },
