@@ -3,28 +3,28 @@
 import { useEffect, useRef } from 'react'
 import { revealOnEnter } from '@/lib/reveal'
 
-{ name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF5500', bpm: 76, duration: '5:12' },
-{ name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF5500', bpm: 72, duration: '6:08' },
-{ name: 'Obsidian', freq: 0.4, amp: 0.9, color: '#FF5500', bpm: 80, duration: '6:24' },
-{ name: 'Rain', freq: 1.8, amp: 0.6, color: '#FF5500', bpm: 95, duration: '5:17' },
-{ name: 'Kobayashi Maru', freq: 1.0, amp: 0.8, color: '#FF5500', bpm: 108, duration: '7:02' },
-{ name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF5500', bpm: 86, duration: '6:51' },
-{ name: 'Cloud Noise', freq: 2.2, amp: 0.7, color: '#FF5500', bpm: 118, duration: '5:38' },
-{ name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF5500', bpm: 64, duration: '8:14' },
-{ name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' }, '#FF5500', bpm: 64, duration: '8:14' },
-{ name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },inence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' }, 64, duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' }, duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },uration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },, duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },, duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },n: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },'Calm Between', freq: 0.3, amp: 0.3, color: '#FF5500', bpm: 64, duration: '8:14' },
-  { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },d Noise', freq: 2.2, amp: 0.7, color: '#FF5500', bpm: 118, duration: '5:38' },
+type Track = {
+  name: string
+  freq: number
+  amp: number
+  color: string
+  bpm: number
+  duration: string
+}
+
+const trackData: Track[] = [
+  { name: 'Ashen Glow', freq: 0.7, amp: 0.9, color: '#FF5500', bpm: 76, duration: '5:12' },
+  { name: 'Ajna', freq: 0.5, amp: 1.0, color: '#FF5500', bpm: 72, duration: '6:08' },
+  { name: 'Obsidian', freq: 0.4, amp: 0.9, color: '#FF5500', bpm: 80, duration: '6:24' },
+  { name: 'Rain', freq: 1.8, amp: 0.6, color: '#FF5500', bpm: 95, duration: '5:17' },
+  { name: 'Kobayashi Maru', freq: 1.0, amp: 0.8, color: '#FF5500', bpm: 108, duration: '7:02' },
+  { name: 'Nalu', freq: 1.4, amp: 0.5, color: '#FF5500', bpm: 86, duration: '6:51' },
+  { name: 'Cloud Noise', freq: 2.2, amp: 0.7, color: '#FF5500', bpm: 118, duration: '5:38' },
   { name: 'Calm Between', freq: 0.3, amp: 0.3, color: '#FF5500', bpm: 64, duration: '8:14' },
   { name: 'Prominence', freq: 0.6, amp: 1.0, color: '#FF5500', bpm: 74, duration: '10:34' },
+]
+
+function drawWaveform(canvas: HTMLCanvasElement) {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
 

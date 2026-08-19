@@ -102,7 +102,7 @@ export function Navigation() {
         >
           {/* Logo */}
           <a
-            href="#"
+            href="#top"
             onClick={(e) => { e.preventDefault(); scrollToTarget(0) }}
             className="font-mono text-[11px] tracking-[0.2em] uppercase text-light hover:text-accent transition-colors"
             aria-label="Red Shift Mantra home"
